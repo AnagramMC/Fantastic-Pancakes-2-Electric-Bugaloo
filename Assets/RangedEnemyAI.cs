@@ -30,7 +30,7 @@ public class RangedEnemyAI : MonoBehaviour {
     void Update()
     {
         clock -= Time.deltaTime;
-
+        
         if (spawnedLocation)
         {
             if (count == 1)
@@ -47,13 +47,14 @@ public class RangedEnemyAI : MonoBehaviour {
                     transform.Translate(0, -velocity, 0);
                 }
             }
+            
         }
 
         if (clock < 0.0f)
         {
             Instantiate(projectile, transform.position, transform.rotation);
 
-            clock = timer;
+            clock = Random.Range(2.0f, 4.0f);
         }
     }
 
