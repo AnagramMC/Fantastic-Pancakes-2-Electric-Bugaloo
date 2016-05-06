@@ -12,16 +12,28 @@ public class Player : MonoBehaviour {
     private curLane playerPosition;
     private curState playerState;
 
+    private float mouseDownTime;
+    private float mouseXPosition;
+    private float mouseUpTime;
+    private float newMouseXPoisiton;
 	// Use this for initialization
 	void Start () {
-        playerPosition = curLane.Lane3;
+        playerPosition = curLane.Lane2;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	    if (Input.GetMouseButtonDown(0))
         {
-            InputCheck(Time.time, Input.mousePosition.x);
+            mouseDownTime = Time.time;
+            mouseXPosition = Input.mousePosition.x;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            mouseUpTime = Time.time;
+            newMouseXPoisiton = Input.mousePosition.x;
+            InputCheck();
         }
 
         switch (playerState)
@@ -74,27 +86,21 @@ public class Player : MonoBehaviour {
         }
 	}
 
-    void InputCheck(float mouseDownTime, float oldMousePosition)
+    void InputCheck()
     {
-        if (Input.GetMouseButtonUp(0))
-            {
-                float newMousePosition = Input.mousePosition.x;
-                Debug.Log(newMousePosition);
-                Debug.Log(oldMousePosition);
-                if (newMousePosition > oldMousePosition)
-                {
-                    float movement = newMousePosition - oldMousePosition;
-                    CheckMovement(movement, true, mouseDownTime, Time.time);
-                }
-                else if (newMousePosition < oldMousePosition)
-                {
-                    float movement = oldMousePosition - newMousePosition;
-                    CheckMovement(movement, false, mouseDownTime, Time.time);
-                }
-            }
+        if (newMouseXPoisiton > mouseXPosition)
+        {
+            float movement = newMouseXPoisiton - mouseXPosition;
+            CheckMovement(movement, true);
+        }
+        else if (newMouseXPoisiton < mouseXPosition)
+        {
+            float movement = mouseXPosition - newMouseXPoisiton;
+            CheckMovement(movement, false);
+        }
     }
 
-    void CheckMovement (float movement, bool isRight, float mouseDownTime, float mouseUpTime)
+    void CheckMovement (float movement, bool isRight)
     {
         if (movement > movementThresholdPX)
         {
@@ -109,11 +115,11 @@ public class Player : MonoBehaviour {
         }
         else
         {
-            CheckAttack(mouseDownTime, mouseUpTime);
+            CheckAttack();
         }
     }
 
-    void CheckAttack(float mouseDownTime, float mouseUpTime)
+    void CheckAttack()
     {
         float deltaMouseTime = mouseUpTime - mouseDownTime;
         if (deltaMouseTime > stabTime)
