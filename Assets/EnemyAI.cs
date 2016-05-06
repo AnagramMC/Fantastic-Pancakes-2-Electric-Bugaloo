@@ -22,25 +22,17 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (spawnedLocation)
+        if (!Physics.Raycast(transform.position, Vector3.down, 1.0f))
         {
-            if (count == 1)
+            transform.Translate(0, -velocity, 0);
+        }
+        else
+        {
+            RaycastHit ray;
+
+            if (Physics.Raycast(transform.position, Vector3.down, out ray, 1.0f))
             {
-                if (transform.position.y >= -2.5)
-                {
-                    transform.Translate(0, -velocity, 0);
-                }
-            }
-            if (count == 2)
-            {
-                if (transform.position.y >= -1)
-                {
-                    transform.Translate(0, -velocity, 0);
-                }
-            }
-            if (count == 3)
-            {
-                if (transform.position.y >= 0.5)
+                if (ray.collider.gameObject.tag == "RangedEnemy")
                 {
                     transform.Translate(0, -velocity, 0);
                 }
