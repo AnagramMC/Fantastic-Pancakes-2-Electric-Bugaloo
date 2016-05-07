@@ -7,9 +7,12 @@ public class UIManager : MonoBehaviour {
 
     public Canvas PauseScreen;
 
-     GameObject ScoreText;
-     GameObject TimeText;
-     
+    public float time = 10;
+
+    GameObject ScoreText;
+    GameObject TimeText;
+
+   
 
 
 	// Use this for initialization
@@ -23,8 +26,22 @@ public class UIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        
         ScoreText.GetComponent<Text>().text = "Hello";
-        TimeText.GetComponent<Text>().text = "Goodbye";
+
+
+        if (time > 0)
+        {
+            time -= Time.deltaTime;
+            string minutes = ((int)time / 60).ToString();
+            string seconds = ((int)time % 60).ToString();
+            TimeText.GetComponent<Text>().text = minutes + ":" + seconds;
+        }
+        else
+        {
+            TimeText.GetComponent<Text>().text = "Time: 0";
+        }
 	}
 
     public void StartGame()
