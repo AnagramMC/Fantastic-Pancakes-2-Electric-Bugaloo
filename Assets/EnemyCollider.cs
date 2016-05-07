@@ -19,7 +19,7 @@ public class EnemyCollider : MonoBehaviour {
         {
             spawnedLocation.spawnCount--;
 
-            Destroy(this.gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

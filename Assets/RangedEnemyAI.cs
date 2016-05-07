@@ -60,7 +60,7 @@ public class RangedEnemyAI : MonoBehaviour {
 
     void OnTriggerEnter(Collider target)
     {
-        if (target.gameObject.tag == "Player")
+        if (target.gameObject.tag == "PlayerAttack")
         {
             spawnedLocation.rangedSpawn--;
 
