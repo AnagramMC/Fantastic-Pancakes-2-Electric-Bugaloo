@@ -3,7 +3,10 @@ using System.Collections;
 
 public class EnemyAI : MonoBehaviour {
     public float speed = 1.0f;
+    public float timer = 3.0f;
+    public GameObject AttackCollider;
 
+    private float clock;
     private GameObject spawner;
     private float velocity;
     private EnemySpawner spawnedLocation;
@@ -11,6 +14,8 @@ public class EnemyAI : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        clock = timer;
+
         velocity = speed * Time.deltaTime;
 
         spawner = GameObject.FindGameObjectWithTag("Spawner");
@@ -22,6 +27,8 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        clock -= Time.deltaTime;
+
         if (!Physics.Raycast(transform.position, Vector3.down, 1.0f))
         {
             transform.Translate(0, -velocity, 0);
@@ -35,6 +42,21 @@ public class EnemyAI : MonoBehaviour {
                 if (ray.collider.gameObject.tag == "RangedEnemy")
                 {
                     transform.Translate(0, -velocity, 0);
+                }
+                if (ray.collider.gameObject.tag == "AttackLine")
+                {
+                    if (clock < 0.0f)
+                    {
+                        AttackCollider.SetActive(true);
+                        Debug.Log("attack collider on");
+
+                        clock = timer;
+                    }
+                    else
+                    {
+                        AttackCollider.SetActive(false);
+                        Debug.Log("attack collider off");
+                    }
                 }
             }
         }

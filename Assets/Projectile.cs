@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        this.gameObject.SetActive(true);
+
         timer -= Time.deltaTime;
 
         transform.Translate(0, -velocity, 0);
