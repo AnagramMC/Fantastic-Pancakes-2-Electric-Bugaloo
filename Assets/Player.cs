@@ -4,7 +4,9 @@ using System.Collections;
 public class Player : MonoBehaviour {
     public int health = 10;
     public float stabTime = 0.5f;
-    public float movementThresholdPX = 10.0f; 
+    public float movementThresholdPX = 10.0f;
+    public GameObject HSlashCollider;
+    public GameObject StabCollider;
 
     private enum curLane {Lane1, Lane2, Lane3 };
     private enum curState {Idle, MoveRight, MoveLeft, HSlash, Stab, Super };
@@ -65,8 +67,11 @@ public class Player : MonoBehaviour {
                 }
                 break;
             case curState.HSlash:
+                Debug.Log("heavy slash");
+
                 break;
             case curState.Stab:
+                Debug.Log("stab");
                 break;
             case curState.Super:
                 break;
@@ -98,11 +103,15 @@ public class Player : MonoBehaviour {
             float movement = mouseXPosition - newMouseXPoisiton;
             CheckMovement(movement, false);
         }
+        else
+        {
+            CheckAttack();
+        }
     }
 
     void CheckMovement (float movement, bool isRight)
     {
-        if (movement > movementThresholdPX)
+        if (movement >= movementThresholdPX)
         {
             if (isRight)
             {
@@ -110,19 +119,15 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                playerState = curState.MoveLeft;    
+                playerState = curState.MoveLeft;
             }
-        }
-        else
-        {
-            CheckAttack();
-        }
+        }  
     }
 
     void CheckAttack()
     {
         float deltaMouseTime = mouseUpTime - mouseDownTime;
-        if (deltaMouseTime > stabTime)
+        if (deltaMouseTime >= stabTime)
         {
             playerState = curState.Stab;
         }
