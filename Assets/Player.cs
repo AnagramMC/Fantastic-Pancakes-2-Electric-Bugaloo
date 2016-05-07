@@ -4,7 +4,9 @@ using System.Collections;
 public class Player : MonoBehaviour {
     public int health = 10;
     public float stabTime = 0.5f;
-    public float movementThresholdPX = 10.0f; 
+    public float movementThresholdPX = 10.0f;
+    public GameObject HSlashCollider;
+    public GameObject StabCollider;
 
     private enum curLane {Lane1, Lane2, Lane3 };
     private enum curState {Idle, MoveRight, MoveLeft, HSlash, Stab, Super };
@@ -12,16 +14,28 @@ public class Player : MonoBehaviour {
     private curLane playerPosition;
     private curState playerState;
 
+    private float mouseDownTime;
+    private float mouseXPosition;
+    private float mouseUpTime;
+    private float newMouseXPoisiton;
 	// Use this for initialization
 	void Start () {
-        playerPosition = curLane.Lane3;
+        playerPosition = curLane.Lane2;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	    if (Input.GetMouseButtonDown(0))
         {
-            InputCheck(Time.time, Input.mousePosition.x);
+            mouseDownTime = Time.time;
+            mouseXPosition = Input.mousePosition.x;
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            mouseUpTime = Time.time;
+            newMouseXPoisiton = Input.mousePosition.x;
+            InputCheck();
         }
 
         switch (playerState)
@@ -53,8 +67,11 @@ public class Player : MonoBehaviour {
                 }
                 break;
             case curState.HSlash:
+                Debug.Log("heavy slash");
+
                 break;
             case curState.Stab:
+                Debug.Log("stab");
                 break;
             case curState.Super:
                 break;
@@ -74,29 +91,27 @@ public class Player : MonoBehaviour {
         }
 	}
 
-    void InputCheck(float mouseDownTime, float oldMousePosition)
+    void InputCheck()
     {
-        if (Input.GetMouseButtonUp(0))
-            {
-                float newMousePosition = Input.mousePosition.x;
-                Debug.Log(newMousePosition);
-                Debug.Log(oldMousePosition);
-                if (newMousePosition > oldMousePosition)
-                {
-                    float movement = newMousePosition - oldMousePosition;
-                    CheckMovement(movement, true, mouseDownTime, Time.time);
-                }
-                else if (newMousePosition < oldMousePosition)
-                {
-                    float movement = oldMousePosition - newMousePosition;
-                    CheckMovement(movement, false, mouseDownTime, Time.time);
-                }
-            }
+        if (newMouseXPoisiton > mouseXPosition)
+        {
+            float movement = newMouseXPoisiton - mouseXPosition;
+            CheckMovement(movement, true);
+        }
+        else if (newMouseXPoisiton < mouseXPosition)
+        {
+            float movement = mouseXPosition - newMouseXPoisiton;
+            CheckMovement(movement, false);
+        }
+        else
+        {
+            CheckAttack();
+        }
     }
 
-    void CheckMovement (float movement, bool isRight, float mouseDownTime, float mouseUpTime)
+    void CheckMovement (float movement, bool isRight)
     {
-        if (movement > movementThresholdPX)
+        if (movement >= movementThresholdPX)
         {
             if (isRight)
             {
@@ -104,19 +119,15 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                playerState = curState.MoveLeft;    
+                playerState = curState.MoveLeft;
             }
-        }
-        else
-        {
-            CheckAttack(mouseDownTime, mouseUpTime);
-        }
+        }  
     }
 
-    void CheckAttack(float mouseDownTime, float mouseUpTime)
+    void CheckAttack()
     {
         float deltaMouseTime = mouseUpTime - mouseDownTime;
-        if (deltaMouseTime > stabTime)
+        if (deltaMouseTime >= stabTime)
         {
             playerState = curState.Stab;
         }
