@@ -76,7 +76,7 @@ function addSequence() {
 function playSequence(){
 	for(var i:int=0;i<level;i++){
 		var boxId : int = sequenceArray[i];
-		boxArray[boxId].SendMessage("depress");
+		//boxArray[boxId].SendMessage("depress");
 		GetComponent.<AudioSource>().pitch=Random.Range(.7,1);
 		GetComponent.<AudioSource>().PlayOneShot(demoSound);
 		yield WaitForSeconds(delayTime);
