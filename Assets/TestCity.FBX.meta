@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: ee86746b66e7cbc48b2845494b833a53
-timeCreated: 1462581307
+timeCreated: 1462586897
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -10,47 +10,359 @@ ModelImporter:
     100004: Box011
     100006: Box012
     100008: LeftRoad
-    100010: MiddleRoad
-    100012: Plane001
-    100014: RightRoad
-    100016: //RootNode
-    100018: TestEnemy 1
-    100020: TestEnemy 2
-    100022: TestEnemy 3
+    100010: Median
+    100012: Median001
+    100014: Median002
+    100016: Median003
+    100018: Median004
+    100020: Median005
+    100022: Median006
+    100024: Median007
+    100026: Median008
+    100028: Median009
+    100030: Median010
+    100032: Median011
+    100034: Median012
+    100036: Median013
+    100038: Median014
+    100040: Median015
+    100042: Median016
+    100044: Median017
+    100046: Median018
+    100048: Median019
+    100050: Median020
+    100052: Median021
+    100054: Median022
+    100056: Median023
+    100058: Median024
+    100060: Median025
+    100062: Median026
+    100064: Median027
+    100066: Median028
+    100068: Median029
+    100070: Median030
+    100072: Median031
+    100074: Median032
+    100076: Median033
+    100078: Median034
+    100080: Median035
+    100082: Median036
+    100084: Median037
+    100086: Median038
+    100088: Median039
+    100090: Median040
+    100092: Median041
+    100094: Median042
+    100096: Median043
+    100098: Median044
+    100100: Median045
+    100102: Median046
+    100104: Median047
+    100106: Median048
+    100108: Median049
+    100110: Median050
+    100112: Median051
+    100114: Median052
+    100116: Median053
+    100118: Median054
+    100120: Median055
+    100122: Median056
+    100124: Median057
+    100126: Median058
+    100128: Median059
+    100130: Median060
+    100132: Median061
+    100134: Median062
+    100136: Median063
+    100138: Median064
+    100140: Median065
+    100142: Median066
+    100144: Median067
+    100146: Median068
+    100148: Median069
+    100150: Median070
+    100152: Median071
+    100154: Median072
+    100156: Median073
+    100158: Median074
+    100160: Median075
+    100162: Median076
+    100164: Median077
+    100166: MiddleRoad
+    100168: Plane001
+    100170: RightRoad
+    100172: //RootNode
+    100174: TestEnemy 1
+    100176: TestEnemy 2
+    100178: TestEnemy 3
     400000: Box006
     400002: Box010
     400004: Box011
     400006: Box012
     400008: LeftRoad
-    400010: MiddleRoad
-    400012: Plane001
-    400014: RightRoad
-    400016: //RootNode
-    400018: TestEnemy 1
-    400020: TestEnemy 2
-    400022: TestEnemy 3
+    400010: Median
+    400012: Median001
+    400014: Median002
+    400016: Median003
+    400018: Median004
+    400020: Median005
+    400022: Median006
+    400024: Median007
+    400026: Median008
+    400028: Median009
+    400030: Median010
+    400032: Median011
+    400034: Median012
+    400036: Median013
+    400038: Median014
+    400040: Median015
+    400042: Median016
+    400044: Median017
+    400046: Median018
+    400048: Median019
+    400050: Median020
+    400052: Median021
+    400054: Median022
+    400056: Median023
+    400058: Median024
+    400060: Median025
+    400062: Median026
+    400064: Median027
+    400066: Median028
+    400068: Median029
+    400070: Median030
+    400072: Median031
+    400074: Median032
+    400076: Median033
+    400078: Median034
+    400080: Median035
+    400082: Median036
+    400084: Median037
+    400086: Median038
+    400088: Median039
+    400090: Median040
+    400092: Median041
+    400094: Median042
+    400096: Median043
+    400098: Median044
+    400100: Median045
+    400102: Median046
+    400104: Median047
+    400106: Median048
+    400108: Median049
+    400110: Median050
+    400112: Median051
+    400114: Median052
+    400116: Median053
+    400118: Median054
+    400120: Median055
+    400122: Median056
+    400124: Median057
+    400126: Median058
+    400128: Median059
+    400130: Median060
+    400132: Median061
+    400134: Median062
+    400136: Median063
+    400138: Median064
+    400140: Median065
+    400142: Median066
+    400144: Median067
+    400146: Median068
+    400148: Median069
+    400150: Median070
+    400152: Median071
+    400154: Median072
+    400156: Median073
+    400158: Median074
+    400160: Median075
+    400162: Median076
+    400164: Median077
+    400166: MiddleRoad
+    400168: Plane001
+    400170: RightRoad
+    400172: //RootNode
+    400174: TestEnemy 1
+    400176: TestEnemy 2
+    400178: TestEnemy 3
     2300000: Box006
     2300002: Box010
     2300004: Box011
     2300006: Box012
     2300008: LeftRoad
-    2300010: MiddleRoad
-    2300012: Plane001
-    2300014: RightRoad
-    2300016: TestEnemy 1
-    2300018: TestEnemy 2
-    2300020: TestEnemy 3
+    2300010: Median
+    2300012: Median001
+    2300014: Median002
+    2300016: Median003
+    2300018: Median004
+    2300020: Median005
+    2300022: Median006
+    2300024: Median007
+    2300026: Median008
+    2300028: Median009
+    2300030: Median010
+    2300032: Median011
+    2300034: Median012
+    2300036: Median013
+    2300038: Median014
+    2300040: Median015
+    2300042: Median016
+    2300044: Median017
+    2300046: Median018
+    2300048: Median019
+    2300050: Median020
+    2300052: Median021
+    2300054: Median022
+    2300056: Median023
+    2300058: Median024
+    2300060: Median025
+    2300062: Median026
+    2300064: Median027
+    2300066: Median028
+    2300068: Median029
+    2300070: Median030
+    2300072: Median031
+    2300074: Median032
+    2300076: Median033
+    2300078: Median034
+    2300080: Median035
+    2300082: Median036
+    2300084: Median037
+    2300086: Median038
+    2300088: Median039
+    2300090: Median040
+    2300092: Median041
+    2300094: Median042
+    2300096: Median043
+    2300098: Median044
+    2300100: Median045
+    2300102: Median046
+    2300104: Median047
+    2300106: Median048
+    2300108: Median049
+    2300110: Median050
+    2300112: Median051
+    2300114: Median052
+    2300116: Median053
+    2300118: Median054
+    2300120: Median055
+    2300122: Median056
+    2300124: Median057
+    2300126: Median058
+    2300128: Median059
+    2300130: Median060
+    2300132: Median061
+    2300134: Median062
+    2300136: Median063
+    2300138: Median064
+    2300140: Median065
+    2300142: Median066
+    2300144: Median067
+    2300146: Median068
+    2300148: Median069
+    2300150: Median070
+    2300152: Median071
+    2300154: Median072
+    2300156: Median073
+    2300158: Median074
+    2300160: Median075
+    2300162: Median076
+    2300164: Median077
+    2300166: MiddleRoad
+    2300168: Plane001
+    2300170: RightRoad
+    2300172: TestEnemy 1
+    2300174: TestEnemy 2
+    2300176: TestEnemy 3
     3300000: Box006
     3300002: Box010
     3300004: Box011
     3300006: Box012
     3300008: LeftRoad
-    3300010: MiddleRoad
-    3300012: Plane001
-    3300014: RightRoad
-    3300016: TestEnemy 1
-    3300018: TestEnemy 2
-    3300020: TestEnemy 3
+    3300010: Median
+    3300012: Median001
+    3300014: Median002
+    3300016: Median003
+    3300018: Median004
+    3300020: Median005
+    3300022: Median006
+    3300024: Median007
+    3300026: Median008
+    3300028: Median009
+    3300030: Median010
+    3300032: Median011
+    3300034: Median012
+    3300036: Median013
+    3300038: Median014
+    3300040: Median015
+    3300042: Median016
+    3300044: Median017
+    3300046: Median018
+    3300048: Median019
+    3300050: Median020
+    3300052: Median021
+    3300054: Median022
+    3300056: Median023
+    3300058: Median024
+    3300060: Median025
+    3300062: Median026
+    3300064: Median027
+    3300066: Median028
+    3300068: Median029
+    3300070: Median030
+    3300072: Median031
+    3300074: Median032
+    3300076: Median033
+    3300078: Median034
+    3300080: Median035
+    3300082: Median036
+    3300084: Median037
+    3300086: Median038
+    3300088: Median039
+    3300090: Median040
+    3300092: Median041
+    3300094: Median042
+    3300096: Median043
+    3300098: Median044
+    3300100: Median045
+    3300102: Median046
+    3300104: Median047
+    3300106: Median048
+    3300108: Median049
+    3300110: Median050
+    3300112: Median051
+    3300114: Median052
+    3300116: Median053
+    3300118: Median054
+    3300120: Median055
+    3300122: Median056
+    3300124: Median057
+    3300126: Median058
+    3300128: Median059
+    3300130: Median060
+    3300132: Median061
+    3300134: Median062
+    3300136: Median063
+    3300138: Median064
+    3300140: Median065
+    3300142: Median066
+    3300144: Median067
+    3300146: Median068
+    3300148: Median069
+    3300150: Median070
+    3300152: Median071
+    3300154: Median072
+    3300156: Median073
+    3300158: Median074
+    3300160: Median075
+    3300162: Median076
+    3300164: Median077
+    3300166: MiddleRoad
+    3300168: Plane001
+    3300170: RightRoad
+    3300172: TestEnemy 1
+    3300174: TestEnemy 2
+    3300176: TestEnemy 3
     4300000: TestEnemy 3
     4300002: TestEnemy 2
     4300004: Plane001
@@ -62,6 +374,84 @@ ModelImporter:
     4300016: Box010
     4300018: Box011
     4300020: Box012
+    4300022: Median
+    4300024: Median001
+    4300026: Median002
+    4300028: Median003
+    4300030: Median004
+    4300032: Median005
+    4300034: Median006
+    4300036: Median007
+    4300038: Median008
+    4300040: Median009
+    4300042: Median010
+    4300044: Median011
+    4300046: Median012
+    4300048: Median013
+    4300050: Median014
+    4300052: Median015
+    4300054: Median016
+    4300056: Median017
+    4300058: Median018
+    4300060: Median019
+    4300062: Median020
+    4300064: Median021
+    4300066: Median022
+    4300068: Median023
+    4300070: Median024
+    4300072: Median025
+    4300074: Median026
+    4300076: Median027
+    4300078: Median028
+    4300080: Median029
+    4300082: Median030
+    4300084: Median031
+    4300086: Median032
+    4300088: Median033
+    4300090: Median034
+    4300092: Median035
+    4300094: Median036
+    4300096: Median037
+    4300098: Median038
+    4300100: Median039
+    4300102: Median040
+    4300104: Median041
+    4300106: Median042
+    4300108: Median043
+    4300110: Median044
+    4300112: Median045
+    4300114: Median046
+    4300116: Median047
+    4300118: Median048
+    4300120: Median049
+    4300122: Median050
+    4300124: Median051
+    4300126: Median052
+    4300128: Median053
+    4300130: Median054
+    4300132: Median055
+    4300134: Median056
+    4300136: Median057
+    4300138: Median058
+    4300140: Median059
+    4300142: Median060
+    4300144: Median061
+    4300146: Median062
+    4300148: Median063
+    4300150: Median064
+    4300152: Median065
+    4300154: Median066
+    4300156: Median067
+    4300158: Median068
+    4300160: Median069
+    4300162: Median070
+    4300164: Median071
+    4300166: Median072
+    4300168: Median073
+    4300170: Median074
+    4300172: Median075
+    4300174: Median076
+    4300176: Median077
     9500000: //RootNode
   materials:
     importMaterials: 1
