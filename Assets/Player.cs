@@ -6,7 +6,7 @@ public class Player : MonoBehaviour {
     public float stabTime = 0.5f;
     public float movementThresholdPX = 10.0f;
     public GameObject HSlashCollider;
-    public GameObject StabCollider;
+    public GameObject[] StabCollider;
 
     public enum curLane {Lane1, Lane2, Lane3 };
     public enum curState {Idle, MoveRight, MoveLeft, HSlash, Stab, Super };
@@ -47,7 +47,7 @@ public class Player : MonoBehaviour {
         {
             case curState.Idle:
                 HSlashCollider.SetActive(false);
-                StabCollider.SetActive(false);
+                //StabCollider.SetActive(false);
                 break;
             case curState.MoveLeft:
                 if (playerPosition == curLane.Lane2)
@@ -87,7 +87,7 @@ public class Player : MonoBehaviour {
                 break;
             case curState.Stab:
                 Debug.Log("stab");
-                StabCollider.SetActive(true);
+                
 
                 clock -= Time.deltaTime;
 
