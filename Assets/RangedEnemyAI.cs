@@ -11,6 +11,7 @@ public class RangedEnemyAI : MonoBehaviour {
     private float velocity;
     private EnemySpawner spawnedLocation;
     private int count;
+    private GameManager managerScript;
 
     // Use this for initialization
     void Start()
@@ -24,6 +25,8 @@ public class RangedEnemyAI : MonoBehaviour {
         spawnedLocation = spawner.GetComponent<EnemySpawner>();
 
         count = spawnedLocation.rangedSpawn;
+
+        managerScript = GameObject.FindGameObjectWithTag("Master").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -63,6 +66,7 @@ public class RangedEnemyAI : MonoBehaviour {
         if (target.gameObject.tag == "PlayerAttack")
         {
             spawnedLocation.rangedSpawn--;
+            managerScript.score += 2;
 
             Destroy(this.gameObject);
         }
