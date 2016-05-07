@@ -38,16 +38,16 @@ public class RangedEnemyAI : MonoBehaviour {
         {
             if (count == 1)
             {
-                if (transform.position.z >= 2.5)
+                if (transform.position.z <= 2.5)
                 {
-                    transform.Translate(0, 0, -velocity);
+                    transform.Translate(0, 0, velocity);
                 }
             }
             if (count == 2)
             {
-                if (transform.position.z >= 4)
+                if (transform.position.z <= 4)
                 {
-                    transform.Translate(0, 0, -velocity);
+                    transform.Translate(0, 0, velocity);
                 }
             }
             

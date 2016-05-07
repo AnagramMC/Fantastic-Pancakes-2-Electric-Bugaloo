@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour {
 
         timer -= Time.deltaTime;
 
-        transform.Translate(0, -velocity, 0);
+        transform.Translate(0, 0, velocity);
 
         if (timer < 0.0f)
         {

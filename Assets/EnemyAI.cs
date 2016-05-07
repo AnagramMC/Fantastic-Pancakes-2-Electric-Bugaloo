@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour {
     public float timer = 3.0f;
     public GameObject AttackCollider;
 
+    private Vector3[] myWaypoints;
     private float clock;
     private GameObject spawner;
     private float velocity;
@@ -19,6 +20,24 @@ public class EnemyAI : MonoBehaviour {
         velocity = speed * Time.deltaTime;
 
         spawner = GameObject.FindGameObjectWithTag("Spawner");
+        if (spawner.transform.position == new Vector3(4.72f, 22.0f, -39.55f))
+        {
+            myWaypoints = iTweenPath.GetPath("MiddlePath");
+
+            Debug.Log("Middle");
+        }
+        if (spawner.transform.position == new Vector3(2.077f, 19.898f, -38.11f))
+        {
+            myWaypoints = iTweenPath.GetPath("LeftPath");
+
+            Debug.Log("Left");
+        }
+        if (spawner.transform.position == new Vector3(-8.38f, 19.181f, -32.69f))
+        {
+            myWaypoints = iTweenPath.GetPath("RightPath");
+
+            Debug.Log("Right");
+        }
 
         spawnedLocation = spawner.GetComponent<EnemySpawner>();
 
@@ -29,34 +48,25 @@ public class EnemyAI : MonoBehaviour {
 	void Update () {
         clock -= Time.deltaTime;
 
-        if (!Physics.Raycast(transform.position, Vector3.back, 1.0f))
-        {
-            transform.Translate(0, 0, -velocity);
-        }
-        else
-        {
-            RaycastHit ray;
+        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "easetype", "linear"));
 
-            if (Physics.Raycast(transform.position, Vector3.back, out ray, 1.0f))
+        RaycastHit ray;
+
+        if (Physics.Raycast(transform.position, Vector3.forward, out ray, 10.0f))
+        {
+            if (ray.collider.gameObject.tag == "AttackLine")
             {
-                if (ray.collider.gameObject.tag == "RangedEnemy" || ray.collider.gameObject.tag == "PlayerAttack")
+                if (clock < 0.0f)
                 {
-                    transform.Translate(0, 0, -velocity);
-                }
-                if (ray.collider.gameObject.tag == "AttackLine")
-                {
-                    if (clock < 0.0f)
-                    {
-                        AttackCollider.SetActive(true);
-                        Debug.Log("attack collider on");
+                    AttackCollider.SetActive(true);
+                    Debug.Log("attack collider on");
 
-                        clock = timer;
-                    }
-                    else
-                    {
-                        AttackCollider.SetActive(false);
-                        Debug.Log("attack collider off");
-                    }
+                    clock = timer;
+                }
+                else
+                {
+                    AttackCollider.SetActive(false);
+                    Debug.Log("attack collider off");
                 }
             }
         }
