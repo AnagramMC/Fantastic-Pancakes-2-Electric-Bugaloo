@@ -14,12 +14,17 @@ public class Player : MonoBehaviour {
     private curLane playerPosition;
     private curState playerState;
 
+
+    float timer = 1.0f;
+    float clock;
+
     private float mouseDownTime;
     private float mouseXPosition;
     private float mouseUpTime;
     private float newMouseXPoisiton;
 	// Use this for initialization
 	void Start () {
+        clock = timer;
         playerPosition = curLane.Lane2;
 	}
 	
@@ -41,6 +46,8 @@ public class Player : MonoBehaviour {
         switch (playerState)
         {
             case curState.Idle:
+                HSlashCollider.SetActive(false);
+                StabCollider.SetActive(false);
                 break;
             case curState.MoveLeft:
                 if (playerPosition == curLane.Lane2)
@@ -68,10 +75,27 @@ public class Player : MonoBehaviour {
                 break;
             case curState.HSlash:
                 Debug.Log("heavy slash");
+                HSlashCollider.SetActive(true);
 
+                clock -= Time.deltaTime;
+
+                if (clock < 0.0f)
+                {
+                    playerState = curState.Idle;
+                    clock = timer;
+                }
                 break;
             case curState.Stab:
                 Debug.Log("stab");
+                StabCollider.SetActive(true);
+
+                clock -= Time.deltaTime;
+
+                if (clock < 0.0f)
+                {
+                    playerState = curState.Idle;
+                    clock = timer;
+                }
                 break;
             case curState.Super:
                 break;
