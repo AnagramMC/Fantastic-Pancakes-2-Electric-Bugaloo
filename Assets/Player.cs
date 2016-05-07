@@ -8,11 +8,11 @@ public class Player : MonoBehaviour {
     public GameObject HSlashCollider;
     public GameObject StabCollider;
 
-    private enum curLane {Lane1, Lane2, Lane3 };
-    private enum curState {Idle, MoveRight, MoveLeft, HSlash, Stab, Super };
+    public enum curLane {Lane1, Lane2, Lane3 };
+    public enum curState {Idle, MoveRight, MoveLeft, HSlash, Stab, Super };
 
-    private curLane playerPosition;
-    private curState playerState;
+    public curLane playerPosition;
+    public curState playerState;
 
 
     float timer = 1.0f;
