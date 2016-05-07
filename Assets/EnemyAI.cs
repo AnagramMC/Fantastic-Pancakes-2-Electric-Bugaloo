@@ -20,34 +20,67 @@ public class EnemyAI : MonoBehaviour {
         velocity = speed * Time.deltaTime;
 
         spawner = GameObject.FindGameObjectWithTag("Spawner");
+        
+        spawnedLocation = spawner.GetComponent<EnemySpawner>();
+
+        count = spawnedLocation.spawnCount;
         if (spawner.transform.position == new Vector3(4.72f, 22.0f, -39.55f))
         {
-            myWaypoints = iTweenPath.GetPath("MiddlePath");
+            if (count == 1)
+            {
+                myWaypoints = iTweenPath.GetPath("MiddlePath");
+            }
+            if (count == 2)
+            {
+                myWaypoints = iTweenPath.GetPath("MidMiddlePath");
+            }
+            if (count == 3)
+            {
+                myWaypoints = iTweenPath.GetPath("BackMiddlePath");
+            }
 
             Debug.Log("Middle");
         }
         if (spawner.transform.position == new Vector3(2.077f, 19.898f, -38.11f))
         {
-            myWaypoints = iTweenPath.GetPath("LeftPath");
+            if (count == 1)
+            {
+                myWaypoints = iTweenPath.GetPath("LeftPath");
+            }
+            if (count == 2)
+            {
+                myWaypoints = iTweenPath.GetPath("MidLeftPath");
+            }
+            if (count == 3)
+            {
+                myWaypoints = iTweenPath.GetPath("BackLeftPath");
+            }
 
             Debug.Log("Left");
         }
         if (spawner.transform.position == new Vector3(-8.38f, 19.181f, -32.69f))
         {
-            myWaypoints = iTweenPath.GetPath("RightPath");
+            if (count == 1)
+            {
+                myWaypoints = iTweenPath.GetPath("RightPath");
+            }
+            if (count == 2)
+            {
+                myWaypoints = iTweenPath.GetPath("MidRightPath");
+            }
+            if (count == 3)
+            {
+                myWaypoints = iTweenPath.GetPath("BackRightPath");
+            }
 
             Debug.Log("Right");
         }
 
         iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "Attack"));
-
-        spawnedLocation = spawner.GetComponent<EnemySpawner>();
-
-        count = spawnedLocation.spawnCount;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         clock -= Time.deltaTime;
     }
 
