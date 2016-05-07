@@ -107,8 +107,19 @@ public class Player : MonoBehaviour {
                 break;
             case curState.Stab:
                 Debug.Log("stab");
-                
 
+                switch (playerPosition)
+                {
+                    case curLane.Lane1:
+                        Debug.DrawLine(sword.transform.position, StabCollider[0].transform.position, Color.red, 1.0f);
+                        break;
+                    case curLane.Lane2:
+                        Debug.DrawLine(sword.transform.position, StabCollider[1].transform.position, Color.red, 1.0f);
+                        break;
+                    case curLane.Lane3:
+                        Debug.DrawLine(sword.transform.position, StabCollider[2].transform.position, Color.red, 1.0f);
+                        break;
+                }
                 clock -= Time.deltaTime;
 
                 if (clock < 0.0f)

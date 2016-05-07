@@ -18,7 +18,7 @@ public class LineToStab : MonoBehaviour {
             switch (playerScript.playerPosition)
             {
                 case Player.curLane.Lane1:
-                    Debug.DrawLine(transform.position, playerScript.StabCollider[0].transform.position);
+                    Debug.DrawLine(transform.position, playerScript.StabCollider[0].transform.position,);
                     break;
                 case Player.curLane.Lane2:
                     Debug.DrawLine(transform.position, playerScript.StabCollider[1].transform.position);
