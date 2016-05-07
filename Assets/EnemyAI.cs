@@ -61,14 +61,4 @@ public class EnemyAI : MonoBehaviour {
             }
         }
     }
-
-    void OnTriggerEnter(Collider target)
-    {
-        if (target.gameObject.tag == "Player")
-        {
-            spawnedLocation.spawnCount--;
-
-            Destroy(this.gameObject);
-        }
-    }
 }
