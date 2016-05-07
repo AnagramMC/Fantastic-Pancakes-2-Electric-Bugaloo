@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 
-public class UIManager : MonoBehaviour {
+public class HUDManager : MonoBehaviour {
 
     public Canvas PauseScreen;
 
@@ -14,12 +14,10 @@ public class UIManager : MonoBehaviour {
 
     GameObject ScoreRef;
 
-   
-
 
 	// Use this for initialization
 	void Start () {
-        DontDestroyOnLoad(this);
+        
         PauseScreen.enabled = false;
 
         ScoreText = GameObject.Find("ScoreText");
@@ -31,31 +29,22 @@ public class UIManager : MonoBehaviour {
 	void Update () {
 
         
-        ScoreText.GetComponent<Text>().text ="Score: " + ScoreRef.GetComponent<GameManager>().score;
+            ScoreText.GetComponent<Text>().text = "Score: " + ScoreRef.GetComponent<GameManager>().score;
 
-
-        if (time > 0)
-        {
-            time -= Time.deltaTime;
-            string minutes = ((int)time / 60).ToString();
-            string seconds = ((int)time % 60).ToString();
-            TimeText.GetComponent<Text>().text = minutes + ":" + seconds;
-        }
-        else
-        {
-            TimeText.GetComponent<Text>().text = "Time: 0";
-        }
+            if (time > 0)
+            {
+                time -= Time.deltaTime;
+                string minutes = ((int)time / 60).ToString();
+                string seconds = ((int)time % 60).ToString();
+                TimeText.GetComponent<Text>().text = minutes + ":" + seconds;
+            }
+            else
+            {
+                TimeText.GetComponent<Text>().text = "Time: 0";
+            }
+        
 	}
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene(1);
-    }
-
-    public void Quit()
-    {
-        Application.Quit();
-    }
 
     public void PauseGame()
     {
@@ -67,5 +56,15 @@ public class UIManager : MonoBehaviour {
     {
         Time.timeScale = 1;
         PauseScreen.enabled = false;
+    }
+
+    public void Menu()
+    {
+
+    }
+
+    public void Restart()
+    {
+
     }
 }
