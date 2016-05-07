@@ -16,6 +16,12 @@ public class Player : MonoBehaviour {
 
     public GameObject sword;
 
+    private AudioSource sfxSource;
+    public AudioClip moveSound;
+    public AudioClip hslashSound;
+    public AudioClip stapSound;
+    public AudioClip superSound;
+
 
     float timer = 1.0f;
     float clock;
@@ -28,6 +34,7 @@ public class Player : MonoBehaviour {
 	void Start () {
         clock = timer;
         playerPosition = curLane.Lane2;
+        sfxSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -56,11 +63,15 @@ public class Player : MonoBehaviour {
                 {
                     playerPosition = curLane.Lane1;
                     playerState = curState.Idle;
+
+                    PlaySound(moveSound);
                 }
                 else if (playerPosition == curLane. Lane3)
                 {
                     playerPosition = curLane.Lane2;
                     playerState = curState.Idle;
+
+                    PlaySound(moveSound);
                 }
                 break;
             case curState.MoveRight:
@@ -68,11 +79,15 @@ public class Player : MonoBehaviour {
                 {
                     playerPosition = curLane.Lane2;
                     playerState = curState.Idle;
+
+                    PlaySound(moveSound);
                 }
                 else if (playerPosition == curLane.Lane2)
                 {
                     playerPosition = curLane.Lane3;
                     playerState = curState.Idle;
+
+                    PlaySound(moveSound);
                 }
                 break;
             case curState.HSlash:
@@ -86,6 +101,9 @@ public class Player : MonoBehaviour {
                     playerState = curState.Idle;
                     clock = timer;
                 }
+
+                PlaySound(hslashSound);
+
                 break;
             case curState.Stab:
                 Debug.Log("stab");
@@ -98,8 +116,14 @@ public class Player : MonoBehaviour {
                     playerState = curState.Idle;
                     clock = timer;
                 }
+
+                PlaySound(stapSound);
+
                 break;
             case curState.Super:
+
+                PlaySound(superSound);
+
                 break;
         }
 
@@ -164,5 +188,11 @@ public class Player : MonoBehaviour {
         {
             playerState = curState.HSlash;
         }
+    }
+
+    void PlaySound(AudioClip sound)
+    {
+        sfxSource.clip = sound;
+        sfxSource.Play();
     }
 }
