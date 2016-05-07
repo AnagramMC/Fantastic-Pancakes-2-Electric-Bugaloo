@@ -23,7 +23,7 @@ public class Player : MonoBehaviour {
     public AudioClip superSound;
 
 
-    float timer = 1.0f;
+    float timer = 0.25f;
     float clock;
 
     private float mouseDownTime;
@@ -97,25 +97,25 @@ public class Player : MonoBehaviour {
                 switch (playerPosition)
                 {
                     case curLane.Lane1:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane1"), "time", 1));
+                        //iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane1"), "time", 0.25f));
                         break;
                     case curLane.Lane2:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane2"), "time", 1));
+                        //iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane2"), "time", 0.25f));
                         break;
                     case curLane.Lane3:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane3"), "time", 1));
+                        //iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane3"), "time", 0.25f));
                         break;
                 }
 
                 clock -= Time.deltaTime;
+
+                PlaySound(hslashSound);
 
                 if (clock < 0.0f)
                 {
                     playerState = curState.Idle;
                     clock = timer;
                 }
-
-                PlaySound(hslashSound);
 
                 break;
             case curState.Stab:
@@ -124,24 +124,24 @@ public class Player : MonoBehaviour {
                 switch (playerPosition)
                 {
                     case curLane.Lane1:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane1"), "time", 1));
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane1"), "time", 0.25f));
                         break;
                     case curLane.Lane2:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane2"), "time", 1));
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane2"), "time", 0.25f));
                         break;
                     case curLane.Lane3:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane3"), "time", 1));
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane3"), "time", 0.25f));
                         break;
                 }
                 clock -= Time.deltaTime;
+
+                PlaySound(stapSound);
 
                 if (clock < 0.0f)
                 {
                     playerState = curState.Idle;
                     clock = timer;
                 }
-
-                PlaySound(stapSound);
 
                 break;
             case curState.Super:
