@@ -29,19 +29,19 @@ public class EnemyAI : MonoBehaviour {
 	void Update () {
         clock -= Time.deltaTime;
 
-        if (!Physics.Raycast(transform.position, Vector3.down, 1.0f))
+        if (!Physics.Raycast(transform.position, Vector3.back, 1.0f))
         {
-            transform.Translate(0, -velocity, 0);
+            transform.Translate(0, 0, -velocity);
         }
         else
         {
             RaycastHit ray;
 
-            if (Physics.Raycast(transform.position, Vector3.down, out ray, 1.0f))
+            if (Physics.Raycast(transform.position, Vector3.back, out ray, 1.0f))
             {
                 if (ray.collider.gameObject.tag == "RangedEnemy" || ray.collider.gameObject.tag == "PlayerAttack")
                 {
-                    transform.Translate(0, -velocity, 0);
+                    transform.Translate(0, 0, -velocity);
                 }
                 if (ray.collider.gameObject.tag == "AttackLine")
                 {
