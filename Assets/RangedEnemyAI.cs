@@ -6,6 +6,7 @@ public class RangedEnemyAI : MonoBehaviour {
     public float timer = 3.0f;
     public GameObject projectile;
 
+    private Vector3[] myWaypoints;
     private float clock;
     private GameObject spawner;
     private float velocity;
@@ -21,6 +22,26 @@ public class RangedEnemyAI : MonoBehaviour {
         velocity = speed * Time.deltaTime;
 
         spawner = GameObject.FindGameObjectWithTag("Spawner");
+        if (spawner.transform.position == new Vector3(4.72f, 22.0f, -39.55f))
+        {
+            myWaypoints = iTweenPath.GetPath("MiddlePath");
+
+            Debug.Log("Middle");
+        }
+        if (spawner.transform.position == new Vector3(2.077f, 19.898f, -38.11f))
+        {
+            myWaypoints = iTweenPath.GetPath("LeftPath");
+
+            Debug.Log("Left");
+        }
+        if (spawner.transform.position == new Vector3(-8.38f, 19.181f, -32.69f))
+        {
+            myWaypoints = iTweenPath.GetPath("RightPath");
+
+            Debug.Log("Right");
+        }
+
+        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "FireProjectile"));
 
         spawnedLocation = spawner.GetComponent<EnemySpawner>();
 
@@ -33,32 +54,6 @@ public class RangedEnemyAI : MonoBehaviour {
     void Update()
     {
         clock -= Time.deltaTime;
-        
-        if (spawnedLocation)
-        {
-            if (count == 1)
-            {
-                if (transform.position.z <= 2.5)
-                {
-                    transform.Translate(0, 0, velocity);
-                }
-            }
-            if (count == 2)
-            {
-                if (transform.position.z <= 4)
-                {
-                    transform.Translate(0, 0, velocity);
-                }
-            }
-            
-        }
-
-        if (clock < 0.0f)
-        {
-            Instantiate(projectile, transform.position, transform.rotation);
-
-            clock = Random.Range(2.0f, 4.0f);
-        }
     }
 
     void OnTriggerEnter(Collider target)
@@ -70,5 +65,10 @@ public class RangedEnemyAI : MonoBehaviour {
 
             Destroy(this.gameObject);
         }
+    }
+
+    void FireProjectile()
+    {
+        Instantiate(projectile, transform.position, transform.rotation);
     }
 }

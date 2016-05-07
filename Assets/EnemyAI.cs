@@ -49,31 +49,10 @@ public class EnemyAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         clock -= Time.deltaTime;
-
-        RaycastHit ray;
-
-        if (Physics.Raycast(transform.position, Vector3.forward, out ray, 10.0f))
-        {
-            if (ray.collider.gameObject.tag == "AttackLine")
-            {
-                if (clock < 0.0f)
-                {
-                    AttackCollider.SetActive(true);
-                    Debug.Log("attack collider on");
-
-                    clock = timer;
-                }
-                else
-                {
-                    AttackCollider.SetActive(false);
-                    Debug.Log("attack collider off");
-                }
-            }
-        }
     }
 
     void Attack()
     {
-
+        Instantiate(AttackCollider, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.0f), transform.rotation);
     }
 }
