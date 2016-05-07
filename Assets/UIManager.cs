@@ -12,6 +12,8 @@ public class UIManager : MonoBehaviour {
     GameObject ScoreText;
     GameObject TimeText;
 
+    GameObject ScoreRef;
+
    
 
 
@@ -22,13 +24,14 @@ public class UIManager : MonoBehaviour {
 
         ScoreText = GameObject.Find("ScoreText");
         TimeText = GameObject.Find("TimeText");
+        ScoreRef = GameObject.Find("MasterSystem");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         
-        ScoreText.GetComponent<Text>().text = "Hello";
+        ScoreText.GetComponent<Text>().text ="Score: " + ScoreRef.GetComponent<GameManager>().score;
 
 
         if (time > 0)
