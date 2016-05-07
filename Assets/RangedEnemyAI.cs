@@ -66,7 +66,7 @@ public class RangedEnemyAI : MonoBehaviour {
             Debug.Log("Right");
         }
 
-        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "FireProjectile", "easetype", "linear"));
+        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "FireProjectile", "easetype", "linear", "orienttopath", true));
 
         managerScript = GameObject.FindGameObjectWithTag("Master").GetComponent<GameManager>();
     }
@@ -79,6 +79,8 @@ public class RangedEnemyAI : MonoBehaviour {
 
     void FireProjectile()
     {
+        transform.rotation = new Quaternion(0,0,0,0);
+
         Instantiate(projectile, transform.position, transform.rotation);
     }
 }

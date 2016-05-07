@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: d16903ce74166254d91722a094a0fbed
+timeCreated: 1462659921
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: _BODY
+    100002: _EYES
+    100004: _HEAD
+    100006: _LEG_L_B
+    100008: _LEG_L_F
+    100010: _LEG_L_M
+    100012: _LEG_R_B
+    100014: _LEG_R_F
+    100016: _LEG_R_M
+    100018: _TAIL
+    100020: BE_BODY_L_BACK_JOINT
+    100022: BE_BODY_L_FRONT_JOINT
+    100024: BE_BODY_L_MID_JOINT
+    100026: BE_HEAD_L_EYE
+    100028: BE_HEAD_L_FANG_LOWER
+    100030: BE_HEAD_L_FANG_UPPER
+    100032: BE_HEAD_L_MOUTH
+    100034: BE_L_LEG_BACK_END
+    100036: BE_L_LEG_FRONT_END
+    100038: BE_L_LEG_MID_END
+    100040: BE_TAIL_END
+    100042: BN_BODY_BASE_JOINT
+    100044: BN_HEAD_JOINT_END
+    100046: BN_HEAD_JOINT_NECK
+    100048: BN_HEAD_L_MOUTH
+    100050: BN_L_LEG_BACK_BASE
+    100052: BN_L_LEG_BACK_END
+    100054: BN_L_LEG_BACK_TOP
+    100056: BN_L_LEG_FRONT_BASE
+    100058: BN_L_LEG_FRONT_END
+    100060: BN_L_LEG_FRONT_TOP
+    100062: BN_L_LEG_MID_BASE
+    100064: BN_L_LEG_MID_END
+    100066: BN_L_LEG_MID_TOP
+    100068: BN_TAIL_BASE
+    100070: IKRP_L_LEG_BACK_MAIN
+    100072: IKRP_L_LEG_FRONT_MAIN
+    100074: IKRP_L_LEG_MID_MAIN
+    100076: IKSC_L_LEG_BACK_CLAW
+    100078: IKSC_L_LEG_FRONT_CLAW
+    100080: IKSC_L_LEG_MID_CLAW
+    100082: //RootNode
+    400000: _BODY
+    400002: _EYES
+    400004: _HEAD
+    400006: _LEG_L_B
+    400008: _LEG_L_F
+    400010: _LEG_L_M
+    400012: _LEG_R_B
+    400014: _LEG_R_F
+    400016: _LEG_R_M
+    400018: _TAIL
+    400020: BE_BODY_L_BACK_JOINT
+    400022: BE_BODY_L_FRONT_JOINT
+    400024: BE_BODY_L_MID_JOINT
+    400026: BE_HEAD_L_EYE
+    400028: BE_HEAD_L_FANG_LOWER
+    400030: BE_HEAD_L_FANG_UPPER
+    400032: BE_HEAD_L_MOUTH
+    400034: BE_L_LEG_BACK_END
+    400036: BE_L_LEG_FRONT_END
+    400038: BE_L_LEG_MID_END
+    400040: BE_TAIL_END
+    400042: BN_BODY_BASE_JOINT
+    400044: BN_HEAD_JOINT_END
+    400046: BN_HEAD_JOINT_NECK
+    400048: BN_HEAD_L_MOUTH
+    400050: BN_L_LEG_BACK_BASE
+    400052: BN_L_LEG_BACK_END
+    400054: BN_L_LEG_BACK_TOP
+    400056: BN_L_LEG_FRONT_BASE
+    400058: BN_L_LEG_FRONT_END
+    400060: BN_L_LEG_FRONT_TOP
+    400062: BN_L_LEG_MID_BASE
+    400064: BN_L_LEG_MID_END
+    400066: BN_L_LEG_MID_TOP
+    400068: BN_TAIL_BASE
+    400070: IKRP_L_LEG_BACK_MAIN
+    400072: IKRP_L_LEG_FRONT_MAIN
+    400074: IKRP_L_LEG_MID_MAIN
+    400076: IKSC_L_LEG_BACK_CLAW
+    400078: IKSC_L_LEG_FRONT_CLAW
+    400080: IKSC_L_LEG_MID_CLAW
+    400082: //RootNode
+    2300000: _BODY
+    2300002: _EYES
+    2300004: _HEAD
+    2300006: _LEG_L_B
+    2300008: _LEG_L_F
+    2300010: _LEG_L_M
+    2300012: _LEG_R_B
+    2300014: _LEG_R_F
+    2300016: _LEG_R_M
+    2300018: _TAIL
+    3300000: _BODY
+    3300002: _EYES
+    3300004: _HEAD
+    3300006: _LEG_L_B
+    3300008: _LEG_L_F
+    3300010: _LEG_L_M
+    3300012: _LEG_R_B
+    3300014: _LEG_R_F
+    3300016: _LEG_R_M
+    3300018: _TAIL
+    4300000: _LEG_L_F
+    4300002: _TAIL
+    4300004: _BODY
+    4300006: _LEG_L_B
+    4300008: _LEG_R_M
+    4300010: _LEG_R_B
+    4300012: _LEG_R_F
+    4300014: _LEG_L_M
+    4300016: _EYES
+    4300018: _HEAD
+    7400000: Take 001
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
