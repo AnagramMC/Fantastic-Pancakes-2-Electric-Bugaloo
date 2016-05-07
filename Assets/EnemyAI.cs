@@ -39,7 +39,7 @@ public class EnemyAI : MonoBehaviour {
 
             if (Physics.Raycast(transform.position, Vector3.down, out ray, 1.0f))
             {
-                if (ray.collider.gameObject.tag == "RangedEnemy")
+                if (ray.collider.gameObject.tag == "RangedEnemy" || ray.collider.gameObject.tag == "PlayerAttack")
                 {
                     transform.Translate(0, -velocity, 0);
                 }
