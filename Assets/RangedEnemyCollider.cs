@@ -23,7 +23,9 @@ public class RangedEnemyCollider : MonoBehaviour {
             spawnedLocation.rangedSpawn--;
             managerScript.score += 2;
 
-            Destroy(this.gameObject);
+            Debug.Log("RangedHit");
+
+            Destroy(transform.parent.gameObject);
         }
     }
 }
