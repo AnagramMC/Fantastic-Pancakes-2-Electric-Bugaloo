@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
     public curLane playerPosition;
     public curState playerState;
 
+    public GameObject sword;
+
 
     float timer = 1.0f;
     float clock;
@@ -104,13 +106,16 @@ public class Player : MonoBehaviour {
         switch (playerPosition)
         {
             case curLane.Lane1:
-                transform.position = new Vector3(-5, -5.5f, 0);
+                transform.position = new Vector3(4.41f, 6.14f, 26.45f);
+                sword.transform.position = new Vector3(1.45f, 6.33f, 26.51f);
                 break;
             case curLane.Lane2:
-                transform.position = new Vector3(0, -5.5f, 0);
+                transform.position = new Vector3(1.46f, 6.14f, 26.45f);
+                sword.transform.position = new Vector3(0.37f, 6.33f, 26.51f);
                 break;
             case curLane.Lane3:
-                transform.position = new Vector3(5, -5.5f, 0);
+                transform.position = new Vector3(-1.34f, 6.14f, 26.45f);
+                sword.transform.position = new Vector3(-0.64f, 6.33f, 26.51f);
                 break;
         }
 	}
