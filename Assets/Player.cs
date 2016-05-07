@@ -56,7 +56,9 @@ public class Player : MonoBehaviour {
         {
             case curState.Idle:
                 HSlashCollider.SetActive(false);
-                //StabCollider.SetActive(false);
+                StabCollider[0].SetActive(false);
+                StabCollider[1].SetActive(false);
+                StabCollider[2].SetActive(false);
                 break;
             case curState.MoveLeft:
                 if (playerPosition == curLane.Lane2)
@@ -124,12 +126,15 @@ public class Player : MonoBehaviour {
                 switch (playerPosition)
                 {
                     case curLane.Lane1:
+                        StabCollider[0].SetActive(true);
                         iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane1"), "time", 0.25f));
                         break;
                     case curLane.Lane2:
+                        StabCollider[1].SetActive(true);
                         iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane2"), "time", 0.25f));
                         break;
                     case curLane.Lane3:
+                        StabCollider[2].SetActive(true);
                         iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane3"), "time", 0.25f));
                         break;
                 }
