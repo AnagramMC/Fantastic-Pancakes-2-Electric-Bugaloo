@@ -111,12 +111,15 @@ public class Player : MonoBehaviour {
                 switch (playerPosition)
                 {
                     case curLane.Lane1:
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane1"), "time", 1));
                         Debug.DrawLine(sword.transform.position, StabCollider[0].transform.position, Color.red, 1.0f);
                         break;
                     case curLane.Lane2:
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane2"), "time", 1));
                         Debug.DrawLine(sword.transform.position, StabCollider[1].transform.position, Color.red, 1.0f);
                         break;
                     case curLane.Lane3:
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane3"), "time", 1));
                         Debug.DrawLine(sword.transform.position, StabCollider[2].transform.position, Color.red, 1.0f);
                         break;
                 }
