@@ -39,6 +39,8 @@ public class EnemyAI : MonoBehaviour {
             Debug.Log("Right");
         }
 
+        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "Attack"));
+
         spawnedLocation = spawner.GetComponent<EnemySpawner>();
 
         count = spawnedLocation.spawnCount;
@@ -47,8 +49,6 @@ public class EnemyAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         clock -= Time.deltaTime;
-
-        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "easetype", "linear"));
 
         RaycastHit ray;
 
@@ -70,5 +70,10 @@ public class EnemyAI : MonoBehaviour {
                 }
             }
         }
+    }
+
+    void Attack()
+    {
+
     }
 }
