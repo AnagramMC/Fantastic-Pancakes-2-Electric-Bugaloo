@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-    public int health = 10;
+    
     public float stabTime = 0.5f;
     public float movementThresholdPX = 10.0f;
     public GameObject HSlashCollider;
@@ -134,25 +134,6 @@ public class Player : MonoBehaviour {
         else
         {
             playerState = curState.HSlash;
-        }
-    }
-
-    void OnTriggerEnter(Collider target)
-    {
-        if (target.gameObject.tag == "EnemyAttack")
-        {
-            if (health < 0)
-            {
-                Destroy(this.gameObject);
-            }
-            else
-            {
-                health--;
-
-                Debug.Log(health);
-            }
-
-            Destroy(target.gameObject);
         }
     }
 }
