@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour {
             Debug.Log("Right");
         }
 
-        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "Attack"));
+        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "Attack", "easetype", "linear"));
     }
 
     // Update is called once per frame

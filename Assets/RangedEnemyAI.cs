@@ -66,7 +66,7 @@ public class RangedEnemyAI : MonoBehaviour {
             Debug.Log("Right");
         }
 
-        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "FireProjectile"));
+        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "FireProjectile", "easetype", "linear"));
 
         managerScript = GameObject.FindGameObjectWithTag("Master").GetComponent<GameManager>();
     }
@@ -75,17 +75,6 @@ public class RangedEnemyAI : MonoBehaviour {
     void Update()
     {
         clock -= Time.deltaTime;
-    }
-
-    void OnTriggerEnter(Collider target)
-    {
-        if (target.gameObject.tag == "PlayerAttack")
-        {
-            spawnedLocation.rangedSpawn--;
-            managerScript.score += 2;
-
-            Destroy(this.gameObject);
-        }
     }
 
     void FireProjectile()
