@@ -97,13 +97,13 @@ public class Player : MonoBehaviour {
                 switch (playerPosition)
                 {
                     case curLane.Lane1:
-                        //iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane1"), "time", 0.25f));
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane1"), "time", 2.0f));
                         break;
                     case curLane.Lane2:
-                        //iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane2"), "time", 0.25f));
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane2"), "time", 2.0f));
                         break;
                     case curLane.Lane3:
-                        //iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane3"), "time", 0.25f));
+                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane3"), "time", 2.0f));
                         break;
                 }
 
