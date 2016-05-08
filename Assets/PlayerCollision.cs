@@ -4,11 +4,12 @@ using System.Collections;
 public class PlayerCollision : MonoBehaviour {
 
     public int health = 10;
+    private GameManager managerScript;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    // Use this for initialization
+    void Start () {
+        managerScript = GameObject.FindGameObjectWithTag("Master").GetComponent<GameManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -26,6 +27,7 @@ public class PlayerCollision : MonoBehaviour {
             else
             {
                 health--;
+                managerScript.hitStreak = 0;
                 Debug.Log(health);
             }
 

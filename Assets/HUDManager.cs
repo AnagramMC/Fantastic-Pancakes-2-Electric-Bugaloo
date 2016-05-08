@@ -39,6 +39,10 @@ public class HUDManager : MonoBehaviour {
         TimeUpScreen.enabled = false;
         FadeImage.enabled = false;
 
+        ComboImage.SetActive(false);
+        ComboText.SetActive(false);
+        MultiplyerText.SetActive(false);
+
         ScoreText = GameObject.Find("ScoreText");
         TimeText = GameObject.Find("TimeText");
 	}
@@ -47,7 +51,7 @@ public class HUDManager : MonoBehaviour {
 	void Update () {
 
         
-            ScoreText.GetComponent<Text>().text = "Score: " + GetComponent<GameManager>().score;
+            ScoreText.GetComponent<Text>().text = GetComponent<GameManager>().score.ToString();
 
             
                 
@@ -61,6 +65,21 @@ public class HUDManager : MonoBehaviour {
         if(HealthBar.value <= 0)
         {
             Fade(true);
+        }
+
+        if(GetComponent<GameManager>().hitStreak > 0)
+        {
+            ComboImage.SetActive(true);
+            ComboText.SetActive(true);
+            MultiplyerText.SetActive(true);
+            ComboText.GetComponent<Text>().text = GetComponent<GameManager>().hitStreak.ToString();
+            MultiplyerText.GetComponent<Text>().text = "X" + GetComponent<GameManager>().multiplyer.ToString();
+        }
+        else
+        {
+            ComboImage.SetActive(false);
+            ComboText.SetActive(false);
+            MultiplyerText.SetActive(false);
         }
         
         if(fadeOut)

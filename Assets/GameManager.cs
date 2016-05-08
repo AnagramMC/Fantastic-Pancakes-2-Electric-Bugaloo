@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour {
     public float time = 0;
 
     public int hitStreak = 0;
+    public int multiplyer = 0;
 
     private float timeExtenderScore = 0;
 
@@ -34,33 +35,35 @@ public class GameManager : MonoBehaviour {
             time = 0;
             GetComponent<HUDManager>().Fade(false);
         }
+
+        if (hitStreak < 10)
+        {
+            multiplyer = 1;
+        }
+        else if (hitStreak < 20)
+        {
+            multiplyer = 2;
+        }
+        else if (hitStreak < 30)
+        {
+            multiplyer = 4;
+        }
+        else if (hitStreak < 40)
+        {
+            multiplyer = 6;
+        }
+        else if (hitStreak < 50)
+        {
+            multiplyer = 8;
+        }
+        else
+        {
+            multiplyer = 10;
+        }
     }
 
     public void AddScore(int points)
     {
-        if(hitStreak < 10)
-        {
-            score += points;
-        }
-        else if (hitStreak < 20)
-        {
-            score += (points * 2);
-        }
-        else if (hitStreak < 30)
-        {
-            score += (points * 4);
-        }
-        else if (hitStreak < 40)
-        {
-            score += (points * 6);
-        }
-        else if (hitStreak < 50)
-        {
-            score += (points * 8);
-        }
-        else
-        {
-            score += (points * 10);
-        }
+        score += (points * multiplyer);
     }
 }

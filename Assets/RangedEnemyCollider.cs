@@ -21,7 +21,8 @@ public class RangedEnemyCollider : MonoBehaviour {
         if (target.gameObject.tag == "PlayerAttack")
         {
             spawnedLocation.rangedSpawn--;
-            managerScript.score += 2;
+            managerScript.AddScore(2);
+            managerScript.hitStreak++;
             //transform.parent.GetComponent<RangedEnemyAI>().FrontPos.GetComponent<FrontCheck>().isFront = false;
 
             Debug.Log("RangedHit");
