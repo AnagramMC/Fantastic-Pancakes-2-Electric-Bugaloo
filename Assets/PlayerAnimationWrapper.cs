@@ -4,7 +4,9 @@ using System.Collections;
 public class PlayerAnimationWrapper : MonoBehaviour {
 
     private GameObject playerReference;
+    public GameObject stabParticle;
     private Player playerScript;
+
 	// Use this for initialization
 	void Start () {
         playerReference = transform.parent.gameObject;
@@ -81,7 +83,7 @@ public class PlayerAnimationWrapper : MonoBehaviour {
 
     public void ActivateEffects ()
     {
-
+        stabParticle.SetActive(true);
     }
 
     public void ReturnToIdle()
