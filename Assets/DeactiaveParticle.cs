@@ -4,7 +4,7 @@ using System.Collections;
 public class DeactiaveParticle : MonoBehaviour {
 
     private ParticleSystem checkParticles;
-    public float ParticleSpeed = 4.0f;
+    public float ParticleSpeed = 1.0f;
 
 	// Use this for initialization
 	void Start () {
