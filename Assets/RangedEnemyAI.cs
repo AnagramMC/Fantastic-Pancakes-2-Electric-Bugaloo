@@ -13,6 +13,7 @@ public class RangedEnemyAI : MonoBehaviour {
     private EnemySpawner spawnedLocation;
     private int count;
     private GameManager managerScript;
+    private bool hasAttacked = false;
 
     // Use this for initialization
     void Start()
@@ -66,7 +67,7 @@ public class RangedEnemyAI : MonoBehaviour {
             Debug.Log("Right");
         }
 
-        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "FireProjectile", "easetype", "linear", "orienttopath", true));
+        iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "CallProjectile", "easetype", "linear", "orienttopath", true));
 
         managerScript = GameObject.FindGameObjectWithTag("Master").GetComponent<GameManager>();
     }
@@ -75,6 +76,20 @@ public class RangedEnemyAI : MonoBehaviour {
     void Update()
     {
         clock -= Time.deltaTime;
+
+        count = spawnedLocation.rangedSpawn;
+
+        if (hasAttacked)
+        {
+            Debug.Log("Has Attacked");
+
+            transform.position = Vector3.MoveTowards(transform.position, myWaypoints[myWaypoints.Length - 1], 2.0f * Time.deltaTime);
+        }
+    }
+
+    void CallProjectile()
+    {
+        InvokeRepeating("FireProjectile", 1.0f, Random.Range(2.0f, 4.0f));
     }
 
     void FireProjectile()
@@ -82,5 +97,41 @@ public class RangedEnemyAI : MonoBehaviour {
         transform.rotation = new Quaternion(0,0,0,0);
 
         Instantiate(projectile, transform.position, transform.rotation);
+
+        if (myWaypoints == iTweenPath.GetPath("RangedTopRightPath"))
+        {
+            if (count == 1)
+            {
+                myWaypoints.SetValue(iTweenPath.GetPath("RangedRightPath")[iTweenPath.GetPath("RangedRightPath").Length - 1], myWaypoints.Length);
+            }
+            if (count == 2)
+            {
+                myWaypoints.SetValue(iTweenPath.GetPath("RangedTopRightPath")[iTweenPath.GetPath("RangedTopRightPath").Length - 1], myWaypoints.Length);
+            }
+        }
+        if (myWaypoints == iTweenPath.GetPath("RangedTopLeftPath"))
+        {
+            if (count == 1)
+            {
+                myWaypoints.SetValue(iTweenPath.GetPath("RangedLeftPath")[iTweenPath.GetPath("RangedLeftPath").Length - 1], myWaypoints.Length);
+            }
+            if (count == 2)
+            {
+                myWaypoints.SetValue(iTweenPath.GetPath("RangedTopLeftPath")[iTweenPath.GetPath("RangedTopLeftPath").Length - 1], myWaypoints.Length);
+            }
+        }
+        if (myWaypoints == iTweenPath.GetPath("RangedTopMiddlePath"))
+        {
+            if (count == 1)
+            {
+                myWaypoints.SetValue(iTweenPath.GetPath("RangedMiddlePath")[iTweenPath.GetPath("RangedMiddlePath").Length - 1], myWaypoints.Length);
+            }
+            if (count == 2)
+            {
+                myWaypoints.SetValue(iTweenPath.GetPath("RangedTopMiddlePath")[iTweenPath.GetPath("RangedTopMiddlePath").Length - 1], myWaypoints.Length);
+            }
+        }
+
+        hasAttacked = true;
     }
 }
