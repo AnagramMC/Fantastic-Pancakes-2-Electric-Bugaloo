@@ -40,7 +40,7 @@ public class RangedEnemyAI : MonoBehaviour {
                 myWaypoints = iTweenPath.GetPath("RangedTopMiddlePath");
             }
 
-            FrontPos = GameObject.Find("Center Bot");
+            FrontPos = GameObject.Find("Center Front");
 
             Debug.Log("Middle");
         }
@@ -55,7 +55,7 @@ public class RangedEnemyAI : MonoBehaviour {
                 myWaypoints = iTweenPath.GetPath("RangedTopLeftPath");
             }
 
-            FrontPos = GameObject.Find("Left Bot");
+            FrontPos = GameObject.Find("Left Front");
 
             Debug.Log("Left");
         }
@@ -70,7 +70,7 @@ public class RangedEnemyAI : MonoBehaviour {
                 myWaypoints = iTweenPath.GetPath("RangedTopRightPath");
             }
 
-            FrontPos = GameObject.Find("Right Bot");
+            FrontPos = GameObject.Find("Right Front");
 
             Debug.Log("Right");
         }
