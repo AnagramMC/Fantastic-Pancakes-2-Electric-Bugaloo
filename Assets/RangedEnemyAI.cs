@@ -14,12 +14,15 @@ public class RangedEnemyAI : MonoBehaviour {
     private int count;
     private GameManager managerScript;
     private bool hasAttacked = false;
+    private Animator myAnimator;
 
     public GameObject FrontPos;
 
     // Use this for initialization
     void Start()
     {
+        myAnimator = gameObject.GetComponent<Animator>();
+
         clock = timer;
 
         velocity = speed * Time.deltaTime;
@@ -75,6 +78,9 @@ public class RangedEnemyAI : MonoBehaviour {
             Debug.Log("Right");
         }
 
+        myAnimator.SetBool("IsMoving", true);
+        myAnimator.SetBool("IsAttacking", false);
+        myAnimator.SetBool("IsStanding", false);
         iTween.MoveTo(gameObject, iTween.Hash("path", myWaypoints, "speed", velocity, "looptype", iTween.LoopType.none, "oncomplete", "CallProjectile", "easetype", "linear", "orienttopath", true));
 
         managerScript = GameObject.FindGameObjectWithTag("Master").GetComponent<GameManager>();
@@ -93,19 +99,34 @@ public class RangedEnemyAI : MonoBehaviour {
 
             if (FrontPos.GetComponent<FrontCheck>().isFront == false)
             {
+                myAnimator.SetBool("IsMoving", true);
+                myAnimator.SetBool("IsAttacking", false);
+                myAnimator.SetBool("IsStanding", false);
+
                 transform.position = Vector3.MoveTowards(transform.position, FrontPos.transform.position, 2.0f * Time.deltaTime);
             }
+            myAnimator.SetBool("IsMoving", false);
+            myAnimator.SetBool("IsAttacking", false);
+            myAnimator.SetBool("IsStanding", true);
         }
     }
 
     void CallProjectile()
     {
+        myAnimator.SetBool("IsMoving", false);
+        myAnimator.SetBool("IsAttacking", false);
+        myAnimator.SetBool("IsStanding", true);
+
         InvokeRepeating("FireProjectile", 1.0f, Random.Range(2.0f, 4.0f));
     }
 
     void FireProjectile()
     {
         transform.rotation = new Quaternion(0,0,0,0);
+
+        myAnimator.SetBool("IsMoving", false);
+        myAnimator.SetBool("IsAttacking", true);
+        myAnimator.SetBool("IsStanding", false);
 
         Instantiate(projectile, transform.position, transform.rotation);
 
