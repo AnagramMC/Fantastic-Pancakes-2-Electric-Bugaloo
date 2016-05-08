@@ -111,9 +111,4 @@ public class RangedEnemyAI : MonoBehaviour {
 
         hasAttacked = true;
     }
-
-    void OnDestroy()
-    {
-        FrontPos.GetComponent<FrontCheck>().isFront = false;
-    }
 }

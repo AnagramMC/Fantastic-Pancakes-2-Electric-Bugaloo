@@ -5,7 +5,7 @@ public class FrontCheck : MonoBehaviour {
 
     public bool isFront = false;
 
-    void OnTriggerStay(Collider target)
+    void OnTriggerEnter(Collider target)
     {
         if (target.gameObject.tag == "RangedEnemy")
         {
