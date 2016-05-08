@@ -22,6 +22,7 @@ public class RangedEnemyCollider : MonoBehaviour {
         {
             spawnedLocation.rangedSpawn--;
             managerScript.score += 2;
+            //transform.parent.GetComponent<RangedEnemyAI>().FrontPos.GetComponent<FrontCheck>().isFront = false;
 
             Debug.Log("RangedHit");
 

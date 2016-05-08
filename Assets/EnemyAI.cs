@@ -103,52 +103,6 @@ public class EnemyAI : MonoBehaviour {
     {
         Instantiate(AttackCollider, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1.0f), transform.rotation);
 
-        if (myWaypoints == iTweenPath.GetPath("MidRightPath") || myWaypoints == iTweenPath.GetPath("BackRightPath"))
-        {
-            if (count == 1)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("RightPath")[iTweenPath.GetPath("RightPath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 2)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("MidRightPath")[iTweenPath.GetPath("MidRightPath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 3)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("BackRightPath")[iTweenPath.GetPath("BackRightPath").Length - 1], myWaypoints.Length);
-            }
-        }
-        if (myWaypoints == iTweenPath.GetPath("MidLeftPath") || myWaypoints == iTweenPath.GetPath("BackLeftPath"))
-        {
-            if (count == 1)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("LeftPath")[iTweenPath.GetPath("LeftPath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 2)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("MidLeftPath")[iTweenPath.GetPath("MidLeftPath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 3)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("BackLeftPath")[iTweenPath.GetPath("BackLeftPath").Length - 1], myWaypoints.Length);
-            }
-        }
-        if (myWaypoints == iTweenPath.GetPath("MidMiddlePath") || myWaypoints == iTweenPath.GetPath("BackMiddlePath"))
-        {
-            if (count == 1)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("MiddlePath")[iTweenPath.GetPath("MiddlePath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 2)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("MidMiddlePath")[iTweenPath.GetPath("MidMiddlePath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 3)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("BackMiddlePath")[iTweenPath.GetPath("BackMiddlePath").Length - 1], myWaypoints.Length);
-            }
-        }
-
         hasAttacked = true;
     }
 }

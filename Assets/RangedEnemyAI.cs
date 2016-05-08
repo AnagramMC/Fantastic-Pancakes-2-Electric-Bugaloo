@@ -15,6 +15,8 @@ public class RangedEnemyAI : MonoBehaviour {
     private GameManager managerScript;
     private bool hasAttacked = false;
 
+    public GameObject FrontPos;
+
     // Use this for initialization
     void Start()
     {
@@ -38,6 +40,8 @@ public class RangedEnemyAI : MonoBehaviour {
                 myWaypoints = iTweenPath.GetPath("RangedTopMiddlePath");
             }
 
+            FrontPos = GameObject.Find("Center Front");
+
             Debug.Log("Middle");
         }
         if (spawner.transform.position == new Vector3(2.077f, 19.898f, -38.11f))
@@ -51,6 +55,8 @@ public class RangedEnemyAI : MonoBehaviour {
                 myWaypoints = iTweenPath.GetPath("RangedTopLeftPath");
             }
 
+            FrontPos = GameObject.Find("Left Front");
+
             Debug.Log("Left");
         }
         if (spawner.transform.position == new Vector3(-8.38f, 19.181f, -32.69f))
@@ -63,6 +69,8 @@ public class RangedEnemyAI : MonoBehaviour {
             {
                 myWaypoints = iTweenPath.GetPath("RangedTopRightPath");
             }
+
+            FrontPos = GameObject.Find("Right Front");
 
             Debug.Log("Right");
         }
@@ -83,7 +91,10 @@ public class RangedEnemyAI : MonoBehaviour {
         {
             Debug.Log("Has Attacked");
 
-            transform.position = Vector3.MoveTowards(transform.position, myWaypoints[myWaypoints.Length - 1], 2.0f * Time.deltaTime);
+            if (FrontPos.GetComponent<FrontCheck>().isFront == false)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, FrontPos.transform.position, 2.0f * Time.deltaTime);
+            }
         }
     }
 
@@ -98,40 +109,11 @@ public class RangedEnemyAI : MonoBehaviour {
 
         Instantiate(projectile, transform.position, transform.rotation);
 
-        if (myWaypoints == iTweenPath.GetPath("RangedTopRightPath"))
-        {
-            if (count == 1)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("RangedRightPath")[iTweenPath.GetPath("RangedRightPath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 2)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("RangedTopRightPath")[iTweenPath.GetPath("RangedTopRightPath").Length - 1], myWaypoints.Length);
-            }
-        }
-        if (myWaypoints == iTweenPath.GetPath("RangedTopLeftPath"))
-        {
-            if (count == 1)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("RangedLeftPath")[iTweenPath.GetPath("RangedLeftPath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 2)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("RangedTopLeftPath")[iTweenPath.GetPath("RangedTopLeftPath").Length - 1], myWaypoints.Length);
-            }
-        }
-        if (myWaypoints == iTweenPath.GetPath("RangedTopMiddlePath"))
-        {
-            if (count == 1)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("RangedMiddlePath")[iTweenPath.GetPath("RangedMiddlePath").Length - 1], myWaypoints.Length);
-            }
-            if (count == 2)
-            {
-                myWaypoints.SetValue(iTweenPath.GetPath("RangedTopMiddlePath")[iTweenPath.GetPath("RangedTopMiddlePath").Length - 1], myWaypoints.Length);
-            }
-        }
-
         hasAttacked = true;
+    }
+
+    void OnDestroy()
+    {
+        FrontPos.GetComponent<FrontCheck>().isFront = false;
     }
 }
