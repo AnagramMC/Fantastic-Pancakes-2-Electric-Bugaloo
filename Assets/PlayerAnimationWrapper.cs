@@ -28,11 +28,19 @@ public class PlayerAnimationWrapper : MonoBehaviour {
                 {
                     playerScript.KeepAttacking();
                 }
+                else if (playerScript.ComboCount <= 1)
+                {
+                    playerScript.ReturnToIdle();
+                }
                 break;
             case 2:
                 if (playerScript.ComboCount > 2)
                 {
                     playerScript.KeepAttacking();
+                }
+                else if (playerScript.ComboCount <= 2)
+                {
+                    playerScript.ReturnToIdle();
                 }
                 break;
             case 3:

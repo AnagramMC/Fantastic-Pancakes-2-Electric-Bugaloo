@@ -51,7 +51,7 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        //playerAnims.SetInteger("ComboCount", ComboCount);
+        playerAnims.SetInteger("ComboCount", ComboCount);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -164,6 +164,7 @@ public class Player : MonoBehaviour {
         ComboCount = 0;
         playerAnims.SetBool("isStabbing", false);
         playerAnims.SetBool("releaseStab", false);
+        playerAnims.SetBool("ReturnToIdle", false);
         //playerAnims.SetBool("", false);
         //playerAnims.SetBool("", false);
         //playerAnims.SetBool("", false);
@@ -183,6 +184,12 @@ public class Player : MonoBehaviour {
         StabCollider[0].SetActive(false);
         StabCollider[1].SetActive(false);
         StabCollider[2].SetActive(false);
+    }
+
+    public void ReturnToIdle ()
+    {
+        playerAnims.SetBool("ReturnToIdle", true);
+        StopAttack();
     }
 
     public void KeepAttacking ()
