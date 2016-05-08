@@ -1,8 +1,15 @@
 fileFormatVersion: 2
-guid: 83082b36849c5f341900f152d270cc9a
+<<<<<<< HEAD:Assets/Environment.meta
+guid: d46a6e36b3142b34a82bf127ba6b1d79
 folderAsset: yes
-timeCreated: 1462733717
+timeCreated: 1462733331
 licenseType: Pro
+=======
+guid: 086a53aae7104d44a91af286dfacb6d2
+folderAsset: yes
+timeCreated: 1462736830
+licenseType: Free
+>>>>>>> origin/master:Assets/BUG/Animations.meta
 DefaultImporter:
   userData: 
   assetBundleName: 
