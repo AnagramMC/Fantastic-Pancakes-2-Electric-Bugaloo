@@ -26,7 +26,8 @@ public class EnemyCollider : MonoBehaviour {
         if (target.gameObject.tag == "PlayerAttack")
         {
             spawnedLocation.spawnCount--;
-            managerScript.score++;
+            managerScript.AddScore(1);
+            managerScript.hitStreak++;
 
             //if (splats)
             //{
