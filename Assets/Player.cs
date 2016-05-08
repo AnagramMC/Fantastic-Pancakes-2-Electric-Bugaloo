@@ -5,11 +5,11 @@ public class Player : MonoBehaviour {
     
     public float stabTime = 0.5f;
     public float movementThresholdPX = Screen.width / 3;
-    public GameObject HSlashCollider;
+    public GameObject[] HSlashCollider;
     public GameObject[] StabCollider;
 
     public enum curLane {Lane1, Lane2, Lane3 };
-    public enum curState {Idle, MoveRight, MoveLeft, HSlash, Stab, Super };
+    public enum curState {Idle, MoveRight, MoveLeft, HSlash, StabWind, Stab, Super };
 
     public curLane playerPosition;
     public curState playerState;
@@ -24,8 +24,11 @@ public class Player : MonoBehaviour {
 
 
     float timer = 0.25f;
+    float ResetAttack;
     float clock;
 
+    private Animator playerAnims;
+    private int ComboCount;
     private float mouseDownTime;
     private float mouseXPosition;
     private float mouseUpTime;
@@ -36,6 +39,7 @@ public class Player : MonoBehaviour {
         playerPosition = curLane.Lane2;
         sfxSource = GetComponent<AudioSource>();
         movementThresholdPX = Screen.width / 5;
+        playerAnims = sword.GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
@@ -56,12 +60,19 @@ public class Player : MonoBehaviour {
         switch (playerState)
         {
             case curState.Idle:
-                HSlashCollider.SetActive(false);
+                HSlashCollider[0].SetActive(false);
+                HSlashCollider[1].SetActive(false);
+                HSlashCollider[2].SetActive(false);
                 StabCollider[0].SetActive(false);
                 StabCollider[1].SetActive(false);
                 StabCollider[2].SetActive(false);
+
+                ResetAnimations();
+
+                playerAnims.SetBool(2, false);
                 break;
             case curState.MoveLeft:
+                playerAnims.SetBool(2, true);
                 if (playerPosition == curLane.Lane2)
                 {
                     playerPosition = curLane.Lane1;
@@ -95,20 +106,23 @@ public class Player : MonoBehaviour {
                 break;
             case curState.HSlash:
                 Debug.Log("heavy slash");
-                HSlashCollider.SetActive(true);
+                
+                
 
-                switch (playerPosition)
-                {
-                    case curLane.Lane1:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane1"), "time", 2.0f));
-                        break;
-                    case curLane.Lane2:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane2"), "time", 2.0f));
-                        break;
-                    case curLane.Lane3:
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane3"), "time", 2.0f));
-                        break;
-                }
+
+
+                //switch (playerPosition)
+                //{
+                //    case curLane.Lane1:
+                //        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane1"), "time", 2.0f));
+                //        break;
+                //    case curLane.Lane2:
+                //        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane2"), "time", 2.0f));
+                //        break;
+                //    case curLane.Lane3:
+                //        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane3"), "time", 2.0f));
+                //        break;
+                //}
 
                 clock -= Time.deltaTime;
 
@@ -174,6 +188,29 @@ public class Player : MonoBehaviour {
         }
 	}
 
+    void ResetAnimations()
+    {
+        playerAnims.SetInteger("ComboCount", 0);
+        playerAnims.SetBool("", false);
+        playerAnims.SetBool("", false);
+        playerAnims.SetBool("", false);
+    }
+
+    void Attack(int curAttack)
+    {
+        HSlashCollider[curAttack].SetActive(true);
+    }
+
+    void StopAttack ()
+    {
+        HSlashCollider[0].SetActive(false);
+        HSlashCollider[1].SetActive(false);
+        HSlashCollider[2].SetActive(false);
+        StabCollider[0].SetActive(false);
+        StabCollider[1].SetActive(false);
+        StabCollider[2].SetActive(false);
+    }
+
     void InputCheck()
     {
         if (newMouseXPosition > mouseXPosition)
@@ -220,6 +257,8 @@ public class Player : MonoBehaviour {
         }
         else
         {
+            ComboCount++;
+            playerAnims.SetInteger("ComboCount", ComboCount);
             playerState = curState.HSlash;
         }
     }
