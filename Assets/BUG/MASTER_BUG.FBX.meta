@@ -92,6 +92,7 @@ ModelImporter:
     4300028: _HEAD_FANG_L_UPPER
     4300030: _HEAD_FANG_R_UPPER
     4300032: _HEAD_FEELER_L
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -106,7 +107,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -150,7 +151,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
