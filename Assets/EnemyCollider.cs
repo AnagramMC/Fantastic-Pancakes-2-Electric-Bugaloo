@@ -21,11 +21,6 @@ public class EnemyCollider : MonoBehaviour {
         managerScript = GameObject.FindGameObjectWithTag("Master").GetComponent<GameManager>();
     }
 
-    void Update()
-    {
-       
-    }
-
     void OnTriggerEnter(Collider target)
     {
         if (target.gameObject.tag == "PlayerAttack")
@@ -39,7 +34,7 @@ public class EnemyCollider : MonoBehaviour {
                 {
                     int randNum = Random.Range(0, splats.GetComponent<ObjectPoolManagement>().splats.Length - 1);
 
-                    if (!splats.GetComponent<ObjectPoolManagement>().splats[randNum].activeSelf)
+                    if (!splats.GetComponent<ObjectPoolManagement>().splats[randNum].activeInHierarchy)
                     {
                         mySplat = splats.GetComponent<ObjectPoolManagement>().splats[randNum];
                         mySplat.transform.position = transform.parent.position;
@@ -47,7 +42,6 @@ public class EnemyCollider : MonoBehaviour {
                         mySplat.SetActive(true);
                         foundSplat = true;
                     }
-
                 }
             }
             
