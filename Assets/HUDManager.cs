@@ -6,6 +6,9 @@ using System.Collections;
 public class HUDManager : MonoBehaviour {
 
     public Canvas PauseScreen;
+    public GameObject SuperButton;
+    public GameObject ComboImage;
+    public GameObject ComboText;
 
     public float time = 10;
 
@@ -19,6 +22,7 @@ public class HUDManager : MonoBehaviour {
 	void Start () {
         
         PauseScreen.enabled = false;
+        SuperButton.SetActive(false);
 
         ScoreText = GameObject.Find("ScoreText");
         TimeText = GameObject.Find("TimeText");
