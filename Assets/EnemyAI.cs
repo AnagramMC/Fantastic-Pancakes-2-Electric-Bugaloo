@@ -5,6 +5,7 @@ public class EnemyAI : MonoBehaviour {
     public float speed = 1.0f;
     public float timer = 3.0f;
     public GameObject AttackCollider;
+    public GameObject animMesh;
 
     private Vector3[] myWaypoints;
     private float clock;
@@ -17,7 +18,7 @@ public class EnemyAI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        myAnimator = gameObject.GetComponent<Animator>();
+        myAnimator = animMesh.GetComponent<Animator>();
 
         clock = timer;
 
