@@ -6,23 +6,36 @@ using System.Collections;
 public class HUDManager : MonoBehaviour {
 
     public Canvas PauseScreen;
-    public GameObject SuperButton;
+    public Canvas DeathScreen;
+    public Canvas TimeUpScreen;
     public GameObject ComboImage;
     public GameObject ComboText;
 
+    public Slider HealthBar;
+    public GameObject HealthRef;
+
+    public Image FadeImage;
+
     public float time = 10;
+    public float fadeSpeed = 1.5f;
 
-    GameObject ScoreText;
-    GameObject TimeText;
+    private bool fadeOut = false;
+    private bool death = false;
+    private bool timeUp = false;
 
-    GameObject ScoreRef;
+    private GameObject ScoreText;
+    private GameObject TimeText;
+
+    private GameObject ScoreRef;
 
 
 	// Use this for initialization
 	void Start () {
         
         PauseScreen.enabled = false;
-        SuperButton.SetActive(false);
+        DeathScreen.enabled = false;
+        TimeUpScreen.enabled = false;
+        FadeImage.enabled = false;
 
         ScoreText = GameObject.Find("ScoreText");
         TimeText = GameObject.Find("TimeText");
@@ -44,8 +57,37 @@ public class HUDManager : MonoBehaviour {
             }
             else
             {
-                TimeText.GetComponent<Text>().text = "Time: 0";
+                TimeText.GetComponent<Text>().text = "0:0";
+                Fade(false);
             }
+
+        HealthBar.value = HealthRef.GetComponent<PlayerCollision>().health;
+
+        if(HealthBar.value <= 0)
+        {
+            Fade(true);
+        }
+        
+        if(fadeOut)
+        {
+            if(FadeImage.color != Color.black)
+            {
+                FadeImage.color = Color.Lerp(FadeImage.color, Color.black, fadeSpeed * Time.deltaTime);
+            }
+            else
+            {
+                Time.timeScale = 0;
+                if (death)
+                {
+                    DeathScreen.enabled = true;
+                }
+                else if (timeUp)
+                {
+                    TimeUpScreen.enabled = true;
+                }
+            }
+        }
+        
         
 	}
 
@@ -64,11 +106,34 @@ public class HUDManager : MonoBehaviour {
 
     public void Menu()
     {
-
+        Debug.Log("Menu");
     }
 
     public void Restart()
     {
-
+        Debug.Log("Restart");
     }
+    
+    public void Quit()
+    {
+        Application.Quit();
+        Debug.Log("Quit");
+    }
+
+    public void Fade(bool dead)
+    {
+        if (dead)
+        {
+            death = true;
+        }
+        else
+        {
+            timeUp = true;
+        }
+        
+        FadeImage.enabled = true;
+        fadeOut = true;
+    }
+
+    
 }
