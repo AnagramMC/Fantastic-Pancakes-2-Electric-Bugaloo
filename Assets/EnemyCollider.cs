@@ -28,22 +28,34 @@ public class EnemyCollider : MonoBehaviour {
             spawnedLocation.spawnCount--;
             managerScript.score++;
 
-            if (splats)
-            {
-                while (!foundSplat)
-                {
-                    int randNum = Random.Range(0, splats.GetComponent<ObjectPoolManagement>().splats.Length - 1);
+            //if (splats)
+            //{
+            //    while (!foundSplat)
+            //    {
+            //        int randNum = Random.Range(0, splats.GetComponent<ObjectPoolManagement>().splats.Length - 1);
 
-                    if (!splats.GetComponent<ObjectPoolManagement>().splats[randNum].activeInHierarchy)
-                    {
-                        mySplat = splats.GetComponent<ObjectPoolManagement>().splats[randNum];
-                        mySplat.transform.position = transform.parent.position;
+            //        if (!splats.GetComponent<ObjectPoolManagement>().splats[randNum].activeInHierarchy)
+            //        {
+            //            GameObject[] otherEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+                        
+            //            for (int i = 0; i < otherEnemies.Length; i++)
+            //            {
+            //                if (otherEnemies[i] && splats.GetComponent<ObjectPoolManagement>().splats[randNum] != otherEnemies[i].GetComponentInChildren<EnemyCollider>().mySplat)
+            //                {
+            //                    mySplat = splats.GetComponent<ObjectPoolManagement>().splats[randNum];
+            //                    mySplat.transform.position = transform.parent.position;
 
-                        mySplat.SetActive(true);
-                        foundSplat = true;
-                    }
-                }
-            }
+            //                    mySplat.SetActive(true);
+            //                    foundSplat = true;
+            //                }
+            //                else
+            //                {
+            //                    foundSplat = false;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
             
             Destroy(transform.parent.gameObject);
         }
