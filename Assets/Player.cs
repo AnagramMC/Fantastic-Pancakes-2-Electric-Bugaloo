@@ -21,14 +21,19 @@ public class Player : MonoBehaviour {
     public AudioClip hslashSound;
     public AudioClip stapSound;
     public AudioClip superSound;
-
+    public bool isMouseDown;
 
     float timer = 0.25f;
+    float AttackTimer = 0.25f;
+
     float ResetAttack;
     float clock;
 
     private Animator playerAnims;
-    private int ComboCount;
+    public int ComboCount;
+
+    private AnimatorStateInfo AnimInfo;
+
     private float mouseDownTime;
     private float mouseXPosition;
     private float mouseUpTime;
@@ -37,6 +42,7 @@ public class Player : MonoBehaviour {
 	void Start () {
         clock = timer;
         playerPosition = curLane.Lane2;
+        playerState = curState.Idle;
         sfxSource = GetComponent<AudioSource>();
         movementThresholdPX = Screen.width / 5;
         playerAnims = sword.GetComponent<Animator>();
@@ -44,14 +50,19 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (Input.GetMouseButtonDown(0))
+
+        //playerAnims.SetInteger("ComboCount", ComboCount);
+
+        if (Input.GetMouseButtonDown(0))
         {
+            isMouseDown = true;
             mouseDownTime = Time.time;
             mouseXPosition = Input.mousePosition.x;
         }
 
         if (Input.GetMouseButtonUp(0))
         {
+            isMouseDown = false;
             mouseUpTime = Time.time;
             newMouseXPosition = Input.mousePosition.x;
             InputCheck();
@@ -66,24 +77,19 @@ public class Player : MonoBehaviour {
                 StabCollider[0].SetActive(false);
                 StabCollider[1].SetActive(false);
                 StabCollider[2].SetActive(false);
-
-                ResetAnimations();
-
-                playerAnims.SetBool(2, false);
                 break;
             case curState.MoveLeft:
-                playerAnims.SetBool(2, true);
                 if (playerPosition == curLane.Lane2)
                 {
                     playerPosition = curLane.Lane1;
-                    playerState = curState.Idle;
+                    //playerState = curState.Idle;
 
                     PlaySound(moveSound);
                 }
                 else if (playerPosition == curLane. Lane3)
                 {
                     playerPosition = curLane.Lane2;
-                    playerState = curState.Idle;
+                    //playerState = curState.Idle;
 
                     PlaySound(moveSound);
                 }
@@ -92,48 +98,23 @@ public class Player : MonoBehaviour {
                 if (playerPosition == curLane.Lane1)
                 {
                     playerPosition = curLane.Lane2;
-                    playerState = curState.Idle;
+                    //playerState = curState.Idle;
 
                     PlaySound(moveSound);
                 }
                 else if (playerPosition == curLane.Lane2)
                 {
                     playerPosition = curLane.Lane3;
-                    playerState = curState.Idle;
+                    //playerState = curState.Idle;
 
                     PlaySound(moveSound);
                 }
                 break;
             case curState.HSlash:
                 Debug.Log("heavy slash");
-                
-                
 
-
-
-                //switch (playerPosition)
-                //{
-                //    case curLane.Lane1:
-                //        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane1"), "time", 2.0f));
-                //        break;
-                //    case curLane.Lane2:
-                //        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane2"), "time", 2.0f));
-                //        break;
-                //    case curLane.Lane3:
-                //        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SlashLane3"), "time", 2.0f));
-                //        break;
-                //}
-
-                clock -= Time.deltaTime;
-
-                PlaySound(hslashSound);
-
-                if (clock < 0.0f)
-                {
-                    playerState = curState.Idle;
-                    clock = timer;
-                }
-
+                break;
+            case curState.StabWind:
                 break;
             case curState.Stab:
                 Debug.Log("stab");
@@ -142,28 +123,18 @@ public class Player : MonoBehaviour {
                 {
                     case curLane.Lane1:
                         StabCollider[0].SetActive(true);
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane1"), "time", 0.25f));
+                        GameObject.Find("Left Front").GetComponent<FrontCheck>().isFront = false;
                         break;
                     case curLane.Lane2:
                         StabCollider[1].SetActive(true);
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane2"), "time", 0.25f));
+                        GameObject.Find("Center Front").GetComponent<FrontCheck>().isFront = false;
                         break;
                     case curLane.Lane3:
                         StabCollider[2].SetActive(true);
-                        iTween.MoveTo(sword, iTween.Hash("path", iTweenPath.GetPath("SwordLane3"), "time", 0.25f));
+                        GameObject.Find("Right Front").GetComponent<FrontCheck>().isFront = false;
                         break;
                 }
-                clock -= Time.deltaTime;
-
-                PlaySound(stapSound);
-
-                if (clock < 0.0f)
-                {
-                    playerState = curState.Idle;
-                    clock = timer;
-                }
-
-                break;
+               break;
             case curState.Super:
 
                 PlaySound(superSound);
@@ -188,27 +159,35 @@ public class Player : MonoBehaviour {
         }
 	}
 
-    void ResetAnimations()
+    public void ResetAnimations()
     {
-        playerAnims.SetInteger("ComboCount", 0);
-        playerAnims.SetBool("", false);
-        playerAnims.SetBool("", false);
-        playerAnims.SetBool("", false);
+        ComboCount = 0;
+        playerAnims.SetBool("isStabbing", false);
+        playerAnims.SetBool("releaseStab", false);
+        //playerAnims.SetBool("", false);
+        //playerAnims.SetBool("", false);
+        //playerAnims.SetBool("", false);
     }
 
-    void Attack(int curAttack)
+    public void Attack(int curAttack)
     {
         HSlashCollider[curAttack].SetActive(true);
     }
 
-    void StopAttack ()
+    public void StopAttack ()
     {
+        ComboCount = 0;
         HSlashCollider[0].SetActive(false);
         HSlashCollider[1].SetActive(false);
         HSlashCollider[2].SetActive(false);
         StabCollider[0].SetActive(false);
         StabCollider[1].SetActive(false);
         StabCollider[2].SetActive(false);
+    }
+
+    public void KeepAttacking ()
+    {
+        playerAnims.SetInteger("ComboCount", ComboCount);
     }
 
     void InputCheck()
@@ -253,13 +232,15 @@ public class Player : MonoBehaviour {
         float deltaMouseTime = mouseUpTime - mouseDownTime;
         if (deltaMouseTime >= stabTime)
         {
-            playerState = curState.Stab;
+            if (isMouseDown)
+            {
+                playerAnims.SetBool("isStabbing", true);
+                playerAnims.SetBool("releaseStab", false);
+            }
         }
         else
         {
             ComboCount++;
-            playerAnims.SetInteger("ComboCount", ComboCount);
-            playerState = curState.HSlash;
         }
     }
 
