@@ -16,6 +16,8 @@ public class Player : MonoBehaviour {
 
     public GameObject sword;
 
+    public GameObject[] stabParticles;
+
     private AudioSource sfxSource;
     public AudioClip moveSound;
     public AudioClip hslashSound;
@@ -148,14 +150,17 @@ public class Player : MonoBehaviour {
                 {
                     case curLane.Lane1:
                         StabCollider[0].SetActive(true);
+                        stabParticles[0].SetActive(true);
                         GameObject.Find("Left Front").GetComponent<FrontCheck>().isFront = false;
                         break;
                     case curLane.Lane2:
                         StabCollider[1].SetActive(true);
+                        stabParticles[1].SetActive(true);
                         GameObject.Find("Center Front").GetComponent<FrontCheck>().isFront = false;
                         break;
                     case curLane.Lane3:
                         StabCollider[2].SetActive(true);
+                        stabParticles[2].SetActive(true);
                         GameObject.Find("Right Front").GetComponent<FrontCheck>().isFront = false;
                         break;
                 }
