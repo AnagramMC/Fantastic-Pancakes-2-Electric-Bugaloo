@@ -234,19 +234,22 @@ public class Player : MonoBehaviour {
 
     void InputCheck()
     {
-        if (newMouseXPosition > mouseXPosition)
+        if (playerState != curState.StabWind)
         {
-            float movement = newMouseXPosition - mouseXPosition;
-            CheckMovement(movement, true);
-        }
-        else if (newMouseXPosition < mouseXPosition)
-        {
-            float movement = mouseXPosition - newMouseXPosition;
-            CheckMovement(movement, false);
-        }
-        else
-        {
-            CheckAttack();
+            if (newMouseXPosition > mouseXPosition)
+            {
+                float movement = newMouseXPosition - mouseXPosition;
+                CheckMovement(movement, true);
+            }
+            else if (newMouseXPosition < mouseXPosition)
+            {
+                float movement = mouseXPosition - newMouseXPosition;
+                CheckMovement(movement, false);
+            }
+            else
+            {
+                CheckAttack();
+            }
         }
     }
 
