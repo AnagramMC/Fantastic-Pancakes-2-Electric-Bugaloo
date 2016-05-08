@@ -11,5 +11,9 @@ public class FrontCheck : MonoBehaviour {
         {
             isFront = true;
         }
+        if (target.gameObject.tag == "PlayerAttack")
+        {
+            isFront = false;
+        }
     }
 }
