@@ -6,6 +6,7 @@ using System.Collections;
 public class MenuManager : MonoBehaviour {
 
     public Canvas creditsPage;
+    public Button startButton;
 
     void Start()
     { 

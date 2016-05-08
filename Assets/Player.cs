@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
     
     public float stabTime = 0.5f;
-    public float movementThresholdPX = 10.0f;
+    public float movementThresholdPX = Screen.width / 3;
     public GameObject HSlashCollider;
     public GameObject[] StabCollider;
 
@@ -29,13 +29,14 @@ public class Player : MonoBehaviour {
     private float mouseDownTime;
     private float mouseXPosition;
     private float mouseUpTime;
-    private float newMouseXPoisiton;
+    private float newMouseXPosition;
 	// Use this for initialization
 	void Start () {
         clock = timer;
         playerPosition = curLane.Lane2;
         sfxSource = GetComponent<AudioSource>();
-	}
+        movementThresholdPX = Screen.width / 5;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -48,7 +49,7 @@ public class Player : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             mouseUpTime = Time.time;
-            newMouseXPoisiton = Input.mousePosition.x;
+            newMouseXPosition = Input.mousePosition.x;
             InputCheck();
         }
 
@@ -175,14 +176,14 @@ public class Player : MonoBehaviour {
 
     void InputCheck()
     {
-        if (newMouseXPoisiton > mouseXPosition)
+        if (newMouseXPosition > mouseXPosition)
         {
-            float movement = newMouseXPoisiton - mouseXPosition;
+            float movement = newMouseXPosition - mouseXPosition;
             CheckMovement(movement, true);
         }
-        else if (newMouseXPoisiton < mouseXPosition)
+        else if (newMouseXPosition < mouseXPosition)
         {
-            float movement = mouseXPosition - newMouseXPoisiton;
+            float movement = mouseXPosition - newMouseXPosition;
             CheckMovement(movement, false);
         }
         else
@@ -203,7 +204,11 @@ public class Player : MonoBehaviour {
             {
                 playerState = curState.MoveLeft;
             }
-        }  
+        }
+        else
+        {
+            CheckAttack();
+        } 
     }
 
     void CheckAttack()
