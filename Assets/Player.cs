@@ -24,7 +24,7 @@ public class Player : MonoBehaviour {
     public bool isMouseDown;
 
     float timer = 0.25f;
-    float AttackTimer = 0.25f;
+    float StabTimer = 0.25f;
 
     float ResetAttack;
     float clock;
@@ -33,7 +33,7 @@ public class Player : MonoBehaviour {
     public int ComboCount;
 
     private AnimatorStateInfo AnimInfo;
-
+    private float curStabTime;
     private float mouseDownTime;
     private float mouseXPosition;
     private float mouseUpTime;
@@ -53,11 +53,23 @@ public class Player : MonoBehaviour {
 
         playerAnims.SetInteger("ComboCount", ComboCount);
 
+        if (isMouseDown)
+        {
+            float deltaStabTime = Time.time - curStabTime;
+            if (deltaStabTime >= stabTime)
+            {
+                playerAnims.SetBool("isStabbing", true);
+                playerAnims.SetBool("releaseStab", false);
+            }
+                 
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             isMouseDown = true;
             mouseDownTime = Time.time;
             mouseXPosition = Input.mousePosition.x;
+            StartTimer();
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -82,32 +94,40 @@ public class Player : MonoBehaviour {
                 if (playerPosition == curLane.Lane2)
                 {
                     playerPosition = curLane.Lane1;
-                    //playerState = curState.Idle;
+                    playerState = curState.Idle;
 
                     PlaySound(moveSound);
                 }
                 else if (playerPosition == curLane. Lane3)
                 {
                     playerPosition = curLane.Lane2;
-                    //playerState = curState.Idle;
+                    playerState = curState.Idle;
 
                     PlaySound(moveSound);
+                }
+                else
+                {
+                    playerState = curState.Idle;
                 }
                 break;
             case curState.MoveRight:
                 if (playerPosition == curLane.Lane1)
                 {
                     playerPosition = curLane.Lane2;
-                    //playerState = curState.Idle;
+                    playerState = curState.Idle;
 
                     PlaySound(moveSound);
                 }
                 else if (playerPosition == curLane.Lane2)
                 {
                     playerPosition = curLane.Lane3;
-                    //playerState = curState.Idle;
+                    playerState = curState.Idle;
 
                     PlaySound(moveSound);
+                }
+                else
+                {
+                    playerState = curState.Idle;
                 }
                 break;
             case curState.HSlash:
@@ -115,6 +135,11 @@ public class Player : MonoBehaviour {
 
                 break;
             case curState.StabWind:
+                if (!isMouseDown)
+                {
+                    playerAnims.SetBool("isStabbing", false);
+                    playerAnims.SetBool("releaseStab", true);
+                }
                 break;
             case curState.Stab:
                 Debug.Log("stab");
@@ -158,6 +183,11 @@ public class Player : MonoBehaviour {
                 break;
         }
 	}
+
+    void StartTimer()
+    {
+        curStabTime = Time.time;
+    }
 
     public void ResetAnimations()
     {
@@ -239,11 +269,8 @@ public class Player : MonoBehaviour {
         float deltaMouseTime = mouseUpTime - mouseDownTime;
         if (deltaMouseTime >= stabTime)
         {
-            if (isMouseDown)
-            {
-                playerAnims.SetBool("isStabbing", true);
-                playerAnims.SetBool("releaseStab", false);
-            }
+            playerAnims.SetBool("isStabbing", false);
+            playerAnims.SetBool("releaseStab", true);
         }
         else
         {
