@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour {
 	void Update () {
         Debug.Log("score " + score);
 
-        if(timeExtenderScore >= 100)
+        if(timeExtenderScore >= 50)
         {
             time += 30;
             timeExtenderScore = 0;
@@ -65,5 +65,6 @@ public class GameManager : MonoBehaviour {
     public void AddScore(int points)
     {
         score += (points * multiplyer);
+        timeExtenderScore += points;
     }
 }
