@@ -120,12 +120,14 @@ public class HUDManager : MonoBehaviour {
 
     public void Menu()
     {
-        Debug.Log("Menu");
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
     }
 
     public void Restart()
     {
-        Debug.Log("Restart");
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
     }
     
     public void Quit()
