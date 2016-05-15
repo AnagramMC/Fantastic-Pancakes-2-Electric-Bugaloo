@@ -9,6 +9,7 @@ public class HUDManager : MonoBehaviour {
     public Canvas DeathScreen;
     public Canvas TimeUpScreen;
     public GameObject ComboImage;
+    public GameObject ComboImage2;
     public GameObject ComboText;
     public GameObject MultiplyerText;
 
@@ -41,6 +42,7 @@ public class HUDManager : MonoBehaviour {
         FadeImage.enabled = false;
 
         ComboImage.SetActive(false);
+        ComboImage2.SetActive(false);
         ComboText.SetActive(false);
         MultiplyerText.SetActive(false);
 
@@ -71,6 +73,7 @@ public class HUDManager : MonoBehaviour {
         if(GetComponent<GameManager>().hitStreak > 0)
         {
             ComboImage.SetActive(true);
+            ComboImage2.SetActive(true);
             ComboText.SetActive(true);
             MultiplyerText.SetActive(true);
             ComboText.GetComponent<Text>().text = GetComponent<GameManager>().hitStreak.ToString();
@@ -79,6 +82,7 @@ public class HUDManager : MonoBehaviour {
         else
         {
             ComboImage.SetActive(false);
+            ComboImage2.SetActive(false);
             ComboText.SetActive(false);
             MultiplyerText.SetActive(false);
         }
