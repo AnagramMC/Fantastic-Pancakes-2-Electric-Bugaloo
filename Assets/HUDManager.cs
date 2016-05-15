@@ -90,7 +90,6 @@ public class HUDManager : MonoBehaviour {
             }
             else
             {
-                Time.timeScale = 0;
                 if (death)
                 {
                     DeathScreen.enabled = true;
@@ -126,7 +125,7 @@ public class HUDManager : MonoBehaviour {
 
     public void Restart()
     {
-        Time.timeScale = 1;
+        //Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
     

@@ -66,6 +66,23 @@ public class Player : MonoBehaviour {
                  
         }
 
+        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            playerState = curState.MoveLeft;
+        }
+
+        if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            playerState = curState.MoveRight;
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            playerState = curState.HSlash;
+        }
+
+
+        
         if (Input.GetMouseButtonDown(0))
         {
             isMouseDown = true;
@@ -79,8 +96,9 @@ public class Player : MonoBehaviour {
             isMouseDown = false;
             mouseUpTime = Time.time;
             newMouseXPosition = Input.mousePosition.x;
-            InputCheck();
+            CheckAttack();
         }
+        
 
         switch (playerState)
         {
@@ -230,46 +248,6 @@ public class Player : MonoBehaviour {
     public void KeepAttacking ()
     {
         playerAnims.SetInteger("ComboCount", ComboCount);
-    }
-
-    void InputCheck()
-    {
-        if (playerState != curState.StabWind)
-        {
-            if (newMouseXPosition > mouseXPosition)
-            {
-                float movement = newMouseXPosition - mouseXPosition;
-                CheckMovement(movement, true);
-            }
-            else if (newMouseXPosition < mouseXPosition)
-            {
-                float movement = mouseXPosition - newMouseXPosition;
-                CheckMovement(movement, false);
-            }
-            else
-            {
-                CheckAttack();
-            }
-        }
-    }
-
-    void CheckMovement (float movement, bool isRight)
-    {
-        if (movement >= movementThresholdPX)
-        {
-            if (isRight)
-            {
-                playerState = curState.MoveRight;
-            }
-            else
-            {
-                playerState = curState.MoveLeft;
-            }
-        }
-        else
-        {
-            CheckAttack();
-        } 
     }
 
     void CheckAttack()

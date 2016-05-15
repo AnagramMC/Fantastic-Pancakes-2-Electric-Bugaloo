@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("score " + score);
+        Debug.Log("score " + timeExtenderScore);
 
-        if(timeExtenderScore >= 50)
+        if(timeExtenderScore >= 100)
         {
             time += 30;
             timeExtenderScore = 0;
@@ -36,23 +36,23 @@ public class GameManager : MonoBehaviour {
             GetComponent<HUDManager>().Fade(false);
         }
 
-        if (hitStreak < 10)
+        if (hitStreak < 5)
         {
             multiplyer = 1;
         }
-        else if (hitStreak < 20)
+        else if (hitStreak < 10)
         {
             multiplyer = 2;
         }
-        else if (hitStreak < 30)
+        else if (hitStreak < 15)
         {
             multiplyer = 4;
         }
-        else if (hitStreak < 40)
+        else if (hitStreak < 20)
         {
             multiplyer = 6;
         }
-        else if (hitStreak < 50)
+        else if (hitStreak < 25)
         {
             multiplyer = 8;
         }
@@ -65,6 +65,6 @@ public class GameManager : MonoBehaviour {
     public void AddScore(int points)
     {
         score += (points * multiplyer);
-        timeExtenderScore += points;
+        timeExtenderScore += (points * multiplyer);
     }
 }
