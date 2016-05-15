@@ -25,14 +25,16 @@ public class Player : MonoBehaviour {
     public AudioClip superSound;
     public bool isMouseDown;
 
-    float timer = 0.25f;
-    float StabTimer = 0.25f;
+    private float timer = 0.25f;
+    private float StabTimer = 0.25f;
 
-    float ResetAttack;
-    float clock;
+    private float ResetAttack;
+    private float clock;
 
     private Animator playerAnims;
     public int ComboCount;
+
+    private bool playedSound;
 
     private AnimatorStateInfo AnimInfo;
     private float curStabTime;
@@ -97,6 +99,7 @@ public class Player : MonoBehaviour {
             mouseUpTime = Time.time;
             newMouseXPosition = Input.mousePosition.x;
             CheckAttack();
+            playedSound = false;
         }
         
 
@@ -116,14 +119,14 @@ public class Player : MonoBehaviour {
                     playerPosition = curLane.Lane1;
                     playerState = curState.Idle;
 
-                    PlaySound(moveSound);
+                   
                 }
                 else if (playerPosition == curLane. Lane3)
                 {
                     playerPosition = curLane.Lane2;
                     playerState = curState.Idle;
 
-                    PlaySound(moveSound);
+                   
                 }
                 else
                 {
@@ -136,14 +139,14 @@ public class Player : MonoBehaviour {
                     playerPosition = curLane.Lane2;
                     playerState = curState.Idle;
 
-                    PlaySound(moveSound);
+                   
                 }
                 else if (playerPosition == curLane.Lane2)
                 {
                     playerPosition = curLane.Lane3;
                     playerState = curState.Idle;
 
-                    PlaySound(moveSound);
+                    
                 }
                 else
                 {
@@ -152,6 +155,7 @@ public class Player : MonoBehaviour {
                 break;
             case curState.HSlash:
                 Debug.Log("heavy slash");
+                
 
                 break;
             case curState.StabWind:
@@ -185,7 +189,7 @@ public class Player : MonoBehaviour {
                break;
             case curState.Super:
 
-                PlaySound(superSound);
+                
 
                 break;
         }
@@ -266,7 +270,7 @@ public class Player : MonoBehaviour {
 
     void PlaySound(AudioClip sound)
     {
-        sfxSource.clip = sound;
-        sfxSource.Play();
+            sfxSource.clip = sound;
+            sfxSource.Play();
     }
 }

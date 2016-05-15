@@ -48,11 +48,11 @@ public class GameManager : MonoBehaviour {
         {
             multiplyer = 4;
         }
-        else if (hitStreak < 20)
+        else if (hitStreak < 25)
         {
             multiplyer = 6;
         }
-        else if (hitStreak < 25)
+        else if (hitStreak < 40)
         {
             multiplyer = 8;
         }

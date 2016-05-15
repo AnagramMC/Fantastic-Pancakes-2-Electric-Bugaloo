@@ -22,6 +22,7 @@ public class HUDManager : MonoBehaviour {
     private bool fadeOut = false;
     private bool death = false;
     private bool timeUp = false;
+    private bool isPaused = false;
 
     private GameObject ScoreText;
     private GameObject TimeText;
@@ -101,20 +102,28 @@ public class HUDManager : MonoBehaviour {
             }
         }
         
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+        }
         
 	}
 
 
-    public void PauseGame()
+    public void Pause()
     {
-        Time.timeScale = 0;
-        PauseScreen.enabled = true;
-    }
-
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        PauseScreen.enabled = false;
+        if (!isPaused)
+        {
+            Time.timeScale = 0;
+            PauseScreen.enabled = true;
+            isPaused = true;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            PauseScreen.enabled = false;
+            isPaused = false;
+        }
     }
 
     public void Menu()
