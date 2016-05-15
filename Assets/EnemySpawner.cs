@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour {
         {
             float randNum = Random.Range(0.0f, 100.0f);
 
-            if (randNum >= 50.0f)
+            if (randNum > 25.0f)
             {
                 if (spawnCount < 3)
                 {
@@ -33,7 +33,7 @@ public class EnemySpawner : MonoBehaviour {
                 }
             }
 
-            if (randNum < 50.0f)
+            if (randNum <= 25.0f)
             {
                 if (rangedSpawn < 2)
                 {
@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour {
                 }
             }
 
-            timer = 3.0f;
+            timer = 1.0f;
         }
     }
 }
